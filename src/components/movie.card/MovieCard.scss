@@ -1,12 +1,21 @@
 @use '../../SCSS/abstracts/mixins';
+.section__container{
+  width: 80vw;
+
+}
+.section__container--h1{
+  width: 100vh;
+  @include mixins.font(2rem);
+  margin: 2rem 0 1rem 0;
+  
+}
+
 
 .container__cards{
-    width: 80vw;
-  
+    
     display: grid;
-    gap: 1;
     grid-template-columns: repeat(auto-fill,minmax(18rem,1fr));
-    grid-auto-rows: 28rem;
+    grid-auto-rows: 27rem;
     background-color: var(--primary);
     
 }

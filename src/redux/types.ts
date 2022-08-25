@@ -20,3 +20,13 @@ export interface moviesState {
   loading: boolean;
   error: Error | null;
 }
+ export interface genre{
+  id: number;
+  name: string;
+ }
+ export interface typeGenres{
+  items: Array<genre>;
+  loading: boolean;
+  error: Error | null;
+ }
+ 

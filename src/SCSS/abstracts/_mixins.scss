@@ -1,8 +1,8 @@
 
 /*creamos mixins*/
-@mixin flex($justify){
+@mixin flex($justify, $align){
     display: flex;
-    align-items: center;
+    align-items: $align;
     justify-content: $justify;
 }
 
@@ -11,4 +11,10 @@
     flex-direction: column;
     justify-content: $justify;
     align-items: $align;
+}
+
+@mixin font($size){
+    color: var(--secundary);
+    font-family: var(--PT-Sans);
+    font-size: $size;
 }

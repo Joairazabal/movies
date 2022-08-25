@@ -1,4 +1,5 @@
-.home__cotainer{
-    background-color: var(--primary);
-    height: 100vh;
+@use '../../SCSS/abstracts/mixins';
+
+.home__container{
+   @include mixins.flex(space-between, center);
 }

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getMovies,  } from "../api/getMovies";
-import { AppThunk } from "./store";
-import { moviesState, movies } from "./todo.types";
+import { getMovies,  } from "../../api/getMovies";
+import { AppThunk } from "../store";
+import { moviesState, movies } from "../types";
 
 const initialState:moviesState = {
   items : [{
@@ -38,8 +38,8 @@ export const allMovies = (): AppThunk => {
   return async (dispatch) => {
     try {
       const response = await getMovies();
-      dispatch(setMovies(response.data.results))
-    
+      const shortResponse= response.data.results.splice(1,10)
+      dispatch(setMovies(shortResponse))
     } catch (error) {
      console.log(error)
     }
@@ -48,7 +48,6 @@ export const allMovies = (): AppThunk => {
 
 export const {
   setMovies
-
 } = movieSlice.actions;
 
 export default movieSlice.reducer;

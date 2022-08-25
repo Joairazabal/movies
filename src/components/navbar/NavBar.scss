@@ -5,7 +5,7 @@
     height: 8rem;
     font-size: 2rem;
     color: var(--secundary);
-    @include mixins.flex(space-around);
+    @include mixins.flex(space-around, center);
     font-family: var(--Nunito);
     
 }
