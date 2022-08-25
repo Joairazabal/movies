@@ -1,0 +1,15 @@
+/*importsmos tiposgrafias*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+
+:root{
+    //cargamos la fuentes
+    --Nunito: 'Nunito', sans-serif;
+    --PT-Sans: 'PT Sans', sans-serif;
+    //colores
+   --primary: #080F28;
+   --secundary: #f5f5f5f5;
+   --nav:#003B90;
+   --bg-button:#007aff;
+}

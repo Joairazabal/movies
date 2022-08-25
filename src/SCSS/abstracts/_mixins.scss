@@ -1,0 +1,14 @@
+
+/*creamos mixins*/
+@mixin flex($justify){
+    display: flex;
+    align-items: center;
+    justify-content: $justify;
+}
+
+@mixin col($justify, $align){
+    display: flex;
+    flex-direction: column;
+    justify-content: $justify;
+    align-items: $align;
+}
