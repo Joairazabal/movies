@@ -40,3 +40,7 @@ const genreSlice = createSlice({
   } = genreSlice.actions;
   
   export default genreSlice.reducer;
+
+
+  //para filtrar por genres puedo preguntar cuando traigo las peliculas, si el estado tiene una genre, filtrar el array por esa genre==>
+  //ej: state=[ciencie ficcion] yo a lo que me llega de la api lo filtro con esa condicion ==> if(state === a el parametro de genre) state.filter(el=> el.genre==param)

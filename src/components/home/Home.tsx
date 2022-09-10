@@ -7,7 +7,6 @@ import MovieCard from "../movie.card/MovieCard";
 import './home.scss'
 import SideBar from "../sideBar/SideBar";
 
-
 export function Home() {
   const dispatch = useAppDispatch();
   let movies:moviesState['items']=useAppSelector((state) => state.movies.items);

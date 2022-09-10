@@ -1,22 +1,26 @@
 @use '../../SCSS/abstracts/mixins';
 .section__container{
-  width: 80vw;
-
+  @include mixins.col(start,start)
+  
 }
 .section__container--h1{
   width: 100vh;
+  @include mixins.flex(start, center);
   @include mixins.font(2rem);
   margin: 2rem 0 1rem 0;
+  gap: 8px;
   
 }
 
 
 .container__cards{
-    
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(18rem,1fr));
-    grid-auto-rows: 27rem;
+    width: 100%;
+    grid-template-columns: repeat(5,5fr);
+    grid-auto-rows: 28rem;
     background-color: var(--primary);
+    
+    justify-items: center
     
 }
 
@@ -25,6 +29,7 @@
     @include mixins.col(start, center);
     width: 15rem;
     height: 28rem;
+    margin: 0 1rem 0 1rem;
 
 &card__container--img{
     display: flex;
@@ -45,4 +50,9 @@
   }
 
 
+}
+strong{
+  color: var(--bg-button);
+  font-family: var(--Nunito);
+  font-size: 2.5rem;
 }

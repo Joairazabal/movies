@@ -1,5 +1,68 @@
-.aside__container{
+@use '../../SCSS/abstracts/mixins';
+.aside{
     width: 20vw;
-    background-color: var(--nav);
-    height: 100vh;
+    background-color: var(--aside);
+    border-right: 1px solid #141a32;
+    @include mixins.col(start,center);
+   
+}
+
+.aside__container{
+    
+    &--h1{
+        width: 80%;
+        font-family: var(--Nunito);
+        font-size: 2rem;
+        color: var(--secundary);
+        text-align: start;
+        margin-top: 2rem;
+    }
+    &--icons{
+        @include mixins.flex(space-between, center);
+        gap: 1rem;
+        width: 90%;
+        
+        &:hover{
+            background-color: #1d2745;
+            border-radius: 8px;
+            color: var(--bg-button);
+            cursor: pointer;
+            
+        }
+    }
+
+}
+
+.aside__button{
+    @include mixins.col(center,start);
+    width: 60%;
+    &:hover{
+        color: var(--bg-button);
+        
+    }
+}
+
+.aside__label{
+    color: var(--genres);
+    height: 30px;
+    width: 30px;
+    &:hover{
+        color: var(--bg-button);
+        
+    }
+   
+}
+
+
+
+
+.aside__button{
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    font-family: var(--PT-Sans);
+    font-size: 2rem;
+    color: var(--genres);
+    font-weight: 100;
+    text-align: start;
 }

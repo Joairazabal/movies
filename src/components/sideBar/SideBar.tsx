@@ -4,6 +4,7 @@ import { allGenres } from '../../redux/slices/genres.slice'
 import { genre, typeGenres } from '../../redux/types'
 import { useEffect } from 'react'
 import './SideBar.scss'
+import{MdLabelOutline} from 'react-icons/md'
 
 export default function SideBar() {
 const dispatch= useAppDispatch()
@@ -14,14 +15,17 @@ useEffect(() => {
   }, [dispatch])
 console.log(genres)
   return (
-    <aside className='aside__container'>
-      <div>
+    <aside className='aside'>
+      <div className='aside__container--h1'>
         <h1 className='aside__h1'>Genres</h1>
       </div>
-        <div>
+        <div className='aside__container--buttons'>
           {genres?.map(el=>{
             return(
-              <button key={el.id}>{el.name}</button>
+              <div key={el.id} className='aside__container--icons'>
+              <MdLabelOutline className='aside__label'/>
+              <button  className='aside__button'>{el.name}</button>
+              </div>
             )
           })}
           {/* mapeo de buttons */}
