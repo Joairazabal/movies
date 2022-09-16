@@ -13,7 +13,7 @@ const genres:typeGenres['items']=useAppSelector((state)=> state.genres.items);
 useEffect(() => {
   dispatch(allGenres())    
   }, [dispatch])
-console.log(genres)
+
   return (
     <aside className='aside'>
       <div className='aside__container--h1'>

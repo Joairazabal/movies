@@ -6,4 +6,9 @@
 
 /*BASE*/
 @use './SCSS/base/base';
-@use './SCSS/base/resets'
+@use './SCSS/base/resets';
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

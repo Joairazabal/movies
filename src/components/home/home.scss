@@ -1,7 +1,0 @@
-@use '../../SCSS/abstracts/mixins';
-
-.home__container{
-   @include mixins.flex(start, start);
-   gap: 6rem;
-  
-}

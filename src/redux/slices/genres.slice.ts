@@ -24,6 +24,7 @@ const genreSlice = createSlice({
       }
   
   });
+  
   export const allGenres = (): AppThunk => {
     return async (dispatch) => {
       try {
