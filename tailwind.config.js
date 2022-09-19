@@ -23,6 +23,7 @@ module.exports = {
                 DEFAULT: '#f5f5f5f5',
                 50: '#007aff',
                 100: '#647690',
+                200: '#1d2745'
             }
         },
         screens: {

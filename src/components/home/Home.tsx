@@ -33,7 +33,7 @@ export function Home() {
     dispatch(topMovies())
     dispatch(getEstrenos())
     }else dispatch(searchMovies(query))
-  }, [dispatch,params]);
+  }, [params]);
 
   if(loading) return <Loading/>
 
@@ -42,12 +42,12 @@ export function Home() {
       <NavBar/>
       <div className=" bg-primary-100 flex gap-6">
       <SideBar />
-      <main className="w-[80%] flex flex-col items-center">
+      <main className="flex flex-col items-center w-[70%]">
      {  search.length?(
       <ContainerMovies movie={search}/>
      ):
      (
-      <div>
+      <div className="flex flex-col items-center">
       <MovieCard movie={movies}
         title={'popular'}
         subtitle={'movies'}
@@ -62,9 +62,7 @@ export function Home() {
       subtitle={'series '}
       clase={'serie'}/>
       </div>
-      
-)
-}
+      )}
       </main>
       </div>
     </section>

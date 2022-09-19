@@ -1,6 +1,5 @@
 import React from 'react'
 import { movies,  resultTop,  seriesPopular } from '../../redux/types'
-import './MovieCard.scss'
 import {Link} from 'react-router-dom'
 import Card from './Card'
 
@@ -14,11 +13,11 @@ interface Props{
 
 export default function MovieCard( {movie, title, subtitle, clase}: Props) {
   return (
-    <section className='section__container'>
-    <div className='section__container--h1'>
-    <h1>{title}</h1><strong>{subtitle}</strong>
+    <section className='mt-10 '>
+    <div className='flex items-center gap-2 mb-8'>
+    <h1 className=' font-PT text-secundary-50 text-4xl'>{title}</h1><strong className=' font-Nunito text-4xl text-secundary'>{subtitle}</strong>
     </div>
-    <div className='container__cards'>
+    <div className='grid grid-cols-5  gap-8'>
     {movie?.map(el=>{
         return(
           <Card
@@ -26,6 +25,7 @@ export default function MovieCard( {movie, title, subtitle, clase}: Props) {
           id={el.id}
           poster_path= {el.poster_path}
           clase={clase}
+        
           
           />
         )

@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom'
 import InfinitiScroll from 'react-infinite-scroll-component'
 import { allMovies } from '../../redux/slices/allMovies.slice'
 import NavBar from '../navbar/NavBar'
+import SideBar from '../sideBar/SideBar'
+import Card from '../movie.card/Card'
 
 export default function Movies() {
 const dispatch= useAppDispatch();
@@ -16,26 +18,26 @@ dispatch(allMovies(page))
 },[page])
 
   return (
-    <div className=' bg-primary-100 h-screen w-full'>
+    <div className=' bg-primary-100 h-screen'>
         <NavBar/>
-        <div className='bg-primary-100 flex justify-center mt-10 '>
-        <div className='w-[70%]'>
+        <div className='bg-primary-100 flex gap-4'>
+        <SideBar/>
+        <div className='w-[80%] mt-10'>
         <InfinitiScroll
         dataLength={totalMovies.length}
         hasMore={true}
         next={()=> setPage(prevPage => prevPage + 1)}
         loader= {<h1>cargando man</h1>}
-        className='grid grid-cols-5 gap-8 '
+        className='grid grid-cols-5 gap-8'
         >
         {totalMovies?.map((el, index)=>{
             return(
-                <div className='flex flex-col items-center gap-3 text-center'key={index}>
-                <Link to={`/movie/${el.id}`}>
-                <img src={`https://image.tmdb.org/t/p/w500/${el.poster_path}`} alt={`${el.title}`} 
-                className='flex h-[20rem] w-[14rem] rounded-[10px]' />
-                <h1 className='text-xl font-Nunito text-secundary'>{el.title}</h1>
-                </Link>
-                </div>
+              <Card
+              title={el.title}
+              id={el.id}
+              poster_path= {el.poster_path}
+              clase={'movie'}
+              />
             )
         })}
         </InfinitiScroll>
