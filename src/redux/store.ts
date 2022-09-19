@@ -9,6 +9,7 @@ import SearchMoviesReducer from './slices/searchMovies.slice'
 import TrailerTvReducer from './slices/getTrailerTv.slice'
 import detailTvReducer from './slices/detailTvs.slice'
 import allMoviesReducer from './slices/allMovies.slice'
+import allSeriesReducer from './slices/allSeries.slice'
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     trailerTv: TrailerTvReducer,
     detailTv: detailTvReducer,
     allMovies: allMoviesReducer,
+    allSeries: allSeriesReducer,
   },
 });
 

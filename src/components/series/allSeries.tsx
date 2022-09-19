@@ -2,21 +2,21 @@ import React,{useEffect, useState} from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {Link} from 'react-router-dom'
 import InfinitiScroll from 'react-infinite-scroll-component'
-import { allMovies } from '../../redux/slices/allMovies.slice'
+import { getAllSeries} from '../../redux/slices/allSeries.slice'
 import NavBar from '../navbar/NavBar'
 import SideBar from '../sideBar/SideBar'
 import Card from '../movie.card/Card'
 
-export default function Movies() {
+export default function Series() {
 const dispatch= useAppDispatch();
-const totalMovies = useAppSelector(state=> state.allMovies.items);
+const totalSeries = useAppSelector(state=> state.allSeries.items);
 
 const pages = Math.floor(Math.random()*1000)
 
 const [page, setPage] = useState(1)
 
 useEffect(()=>{
-dispatch(allMovies(page))
+dispatch(getAllSeries(page))
 },[page])
 
   return (
@@ -26,13 +26,13 @@ dispatch(allMovies(page))
         <SideBar/>
         <div className='w-[80%] mt-10'>
         <InfinitiScroll
-        dataLength={totalMovies.length}
+        dataLength={totalSeries.length}
         hasMore={true}
         next={()=> setPage(prevPage => prevPage + 1)}
         loader= {<h1>cargando man</h1>}
         className='grid grid-cols-5 gap-8'
         >
-        {totalMovies?.map((el, index)=>{
+        {totalSeries?.map((el, index)=>{
             return(
               <Card
               title={el.title}

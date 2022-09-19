@@ -25,8 +25,7 @@ export default function MovieCard( {movie, title, subtitle, clase}: Props) {
           id={el.id}
           poster_path= {el.poster_path}
           clase={clase}
-        
-          
+          key={el.id}
           />
         )
     })}

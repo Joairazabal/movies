@@ -11,11 +11,15 @@ import { searchMovies } from "../../redux/slices/searchMovies.slice";
 import ContainerMovies from "../search/ContainerMovies";
 import NavBar from "../navbar/NavBar";
 import Loading from "../loading/Loading";
+import {useAuth0} from '@auth0/auth0-react'
 
 export function Home() {
   const dispatch = useAppDispatch();
   const params:Location= useLocation();
   let query= params.search.substring(8).toString();
+  const {user}=useAuth0()  
+
+  console.log(user)
 
   const movies: moviesState["items"] = useAppSelector(state => state.movies.items );
   const top: resultTop['results']= useAppSelector(state => state.topMovies.items.results);
@@ -28,7 +32,7 @@ export function Home() {
     setTimeout(()=>{
       setloading(false)
     },500)
-    if(params.search === '' || query.length === 0  ){
+    if(params.search === '' || query.length > 45  ){
     dispatch(populartyMovies());
     dispatch(topMovies())
     dispatch(getEstrenos())
