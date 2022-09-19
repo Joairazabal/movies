@@ -1,38 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { urlDetail } from "../../api/getMovies";
 import { AppThunk } from "../store";
-import { Params } from "react-router-dom";
 import {  typeDetail } from "../types";
 
 const initialState:typeDetail={
     items:{
-    poster_path: '',
-    adult: false,
-    overview: '',
-    release_date: '',
-    genres: [],
-    id: 0,
-    original_title: '',
-    original_language: '',
-    title: '',
-    backdrop_path: '' ,
-    popularity: 0,
-    vote_count:0,
-    video: false,
-    vote_average:0,
-    belongs_to_collection: {},
-    budget: 0,
-    homepage: '' ,
-    imdb_id: '' ,
-    runtime: 0,
-    production_companies: [],
-    production_countries: [],
-    spoken_languages: [],
-    staus: '',
-    tagline: '' },
-    loading: false,
+    poster_path: null,
+    overview: null,
+    release_date: null,
+    genres: null,
+    id: null,
+    title: null,
+    runtime: null,
+    number_of_seasons: null,
+    first_air_date: null
+    }
+    ,
+    loading: true,
     error: null,
 };
+
 
 const detail= createSlice({
     name: 'detail',
@@ -40,7 +27,10 @@ const detail= createSlice({
     reducers:{
         setDetail:(state,action)=>{
             state.items= action.payload
-        }
+            state.loading=false
+        },
+        setClear: ()=> initialState
+        
     }
 })
 
@@ -56,7 +46,7 @@ return async (dispatch)=>{
 }
 
 export const{
-    setDetail
+    setDetail, setClear
 } = detail.actions
 
 export default detail.reducer

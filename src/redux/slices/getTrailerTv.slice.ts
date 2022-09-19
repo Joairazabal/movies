@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { urlTrailer} from "../../api/getMovies";
+import { urlTrailer, urlTrailerTvs } from "../../api/getMovies";
 import { AppThunk } from "../store";
 import { typeTrailer } from "../types";
 
@@ -9,22 +9,23 @@ loading:false,
 error: null
 }
 
-const trailer= createSlice({
-    name: 'trailer',
+const trailerTv= createSlice({
+    name: 'trailerTv',
     initialState,
     reducers:{
         setTrailer:(state,action)=>{
             state.items= action.payload
-        }
+        },
+        setClearState:()=> initialState
     }
 })
 
-export const getTrailer= (id: string | undefined  ): AppThunk=>{
+export const getTrailerTv= (id: string | undefined  ): AppThunk=>{
     return async (dispatch)=>{
         try{
-        const response= await urlTrailer(id);
+        const response= await urlTrailerTvs(id);
         const shortResponse= response.data.results.slice(0,2)
-        dispatch(trailer.actions.setTrailer(shortResponse))
+        dispatch(trailerTv.actions.setTrailer(shortResponse))
         }catch (error){
         console.log(error)
         }
@@ -32,7 +33,7 @@ export const getTrailer= (id: string | undefined  ): AppThunk=>{
     }
     
     export const{
-        setTrailer
-    } = trailer.actions
+        setTrailer, setClearState
+    } = trailerTv.actions
     
-    export default trailer.reducer
+    export default trailerTv.reducer

@@ -28,7 +28,7 @@ try {
   const response = await seriesPopular()
   dispatch(setpopular(response.data.results))
 } catch (error) {
-  console.log(error)
+  console.error(error)
 }}}
 ;
 

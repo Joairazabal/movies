@@ -6,6 +6,9 @@ import trailerReducer from './slices/getTrailer.slice'
 import topMoviesReducer from './slices/topMovies.slice'
 import estrenosReducer from './slices/estrenos.slice'
 import SearchMoviesReducer from './slices/searchMovies.slice'
+import TrailerTvReducer from './slices/getTrailerTv.slice'
+import detailTvReducer from './slices/detailTvs.slice'
+import allMoviesReducer from './slices/allMovies.slice'
 
 const store = configureStore({
   reducer: {
@@ -16,6 +19,9 @@ const store = configureStore({
     topMovies: topMoviesReducer,
     estrenos: estrenosReducer,
     searchMovies:SearchMoviesReducer,
+    trailerTv: TrailerTvReducer,
+    detailTv: detailTvReducer,
+    allMovies: allMoviesReducer,
   },
 });
 

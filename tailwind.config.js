@@ -7,6 +7,7 @@ module.exports = {
             fontFamily: {
                 PT: ["PT Sans", " sans-serif"],
                 Nunito: ['Nunito', 'sans-serif'],
+                Logo: ['Varela Round', 'sans-serif'],
             },
         },
         colors: {

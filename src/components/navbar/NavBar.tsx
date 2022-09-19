@@ -4,29 +4,27 @@ import { Link } from "react-router-dom";
 
 export default function () {
   return (
-    <nav className="w-full bg-primary-200 flex h-24 items-center justify-around top-0 sticky">
+    <nav className="w-full bg-primary-200 flex h-24 items-center justify-between top-0 sticky">
+      <div className="flex w-auto gap-20 items-center ml-10">
       <div>
-        <h1 className=" font-PT text-2xl text-secundary">Movies app</h1>
+      <h1 className=' font-Logo font-black text-secundary-50 lg:text-6xl sm:text-4xl '>Ji</h1>
       </div>
-      <div className="flex w-auto gap-11 items-center">
-        <ul className="flex gap-4 text-secundary font-Nunito text-3xl">
-          <li>
-            <Link to={"/"}>Home</Link>
+        <ul className="flex gap-8 text-secundary font-Nunito text-2xl">
+          <li className="border-l-2 border-secundary-50 pl-2">
+            <Link to={"/"}>home</Link>
           </li>
-          <li>
-            <a href="#">Movies</a>
+          <li className="border-l-2 border-secundary-50 pl-2">
+            <Link to={'/movies'}>movies</Link>
           </li>
-          <li>
-            <a href="#">Series</a>
-          </li>
-          <li>
-            <a href="#">Genres</a>
+          <li className="border-l-2 border-secundary-50 pl-2">
+            <a href="">series</a>
           </li>
         </ul>
-        <div>
+        </div>
+        <div className="mr-10">
         <Search />
       </div>
-      </div>
+      
     </nav>
   );
 }

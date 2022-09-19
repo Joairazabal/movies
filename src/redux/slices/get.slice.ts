@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getMovies } from "../../api/getMovies";
 import { AppThunk } from "../store";
-import { moviesState, movies } from "../types";
+import { moviesState } from "../types";
 
 const initialState: moviesState = {
   items: [
+
     {
       poster_path: "",
       id: 0,
@@ -37,6 +38,7 @@ export const populartyMovies = (): AppThunk => {
     }
   };
 };
+
 
 export const { setMovies } = movieSlice.actions;
 
