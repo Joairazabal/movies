@@ -44,17 +44,17 @@ export default function DetailMovie() {
                 
                 <div className="w-[60%]">
                   <div className="flex items-end gap-2 ">
-                    <strong className="font-PT text-3xl ">Genres: </strong>
+                    <strong className="font-PT text-3xl text-secundary-50 ">Genres: </strong>
                     {details.genres?.map(el => {
                       return <h3 key={el.id} className='text-secundary font-Nunito text-xl '>{`${el.name} `} </h3>;
                     })}
                   </div>
                   <h3 className="my-2 text-secundary font-Nunito text-xl">
-                    <strong className="font-PT text-3xl"> Premiere: </strong>
+                    <strong className="font-PT text-3xl text-secundary-50"> Premiere: </strong>
                     {details.release_date}
                   </h3>
                   <h3 className="text-secundary font-Nunito text-xl">
-                    <strong className="font-PT text-3xl">Duration: </strong>
+                    <strong className="font-PT text-3xl text-secundary-50">Duration: </strong>
                     {hora}Hs
                   </h3>
                   <h3 className="break-words text-secundary font-Nunito text-2xl mt-4">{details.overview}</h3>

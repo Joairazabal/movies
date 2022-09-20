@@ -21,7 +21,7 @@ export default function MovieCard( {movie, title, subtitle, clase}: Props) {
     {movie?.map(el=>{
         return(
           <Card
-          title={el.title}
+          title={el.title?el.title:el.name}
           id={el.id}
           poster_path= {el.poster_path}
           clase={clase}

@@ -50,4 +50,13 @@
           color: black;
         }
       }
+
+   
+      
 }
+
+.infinite-scroll-component__outerdiv{
+  display: flex;
+  justify-content: center;
+}
+

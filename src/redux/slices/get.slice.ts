@@ -4,15 +4,7 @@ import { AppThunk } from "../store";
 import { moviesState } from "../types";
 
 const initialState: moviesState = {
-  items: [
-
-    {
-      poster_path: "",
-      id: 0,
-      title: "",
-      name:null
-    },
-  ],
+  items: [],
   loading: false,
   error: null,
 };

@@ -29,7 +29,7 @@ export const seriesPopular = ()=> {
 }
 
 export const urlSearchMovies= (movie: string)=>{
-  return axios(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=${movie}&page=1&include_adult=false`)
+  return axios(`https://api.themoviedb.org/3/search/multi?api_key=${api_key}&language=en-US&query=${movie}&page=1`)
 }
 
 export const urlTrailerTvs=(tv_id:string | undefined)=>{

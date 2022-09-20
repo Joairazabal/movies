@@ -14,7 +14,7 @@ useEffect(() => {
   }, [])
 
   return (
-    <aside className='w-[15%] bg-primary-300 flex flex-col items-center'>
+    <aside className='w-[25%] bg-primary-300 flex flex-col items-center'>
       <div className='mt-8 w-[80%] text-left'>
         <h1 className='font-Nunito text-secundary text-2xl'>Genres</h1>
       </div>

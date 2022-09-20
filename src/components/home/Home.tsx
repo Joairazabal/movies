@@ -19,9 +19,8 @@ export function Home() {
   let query= params.search.substring(8).toString();
   const {user}=useAuth0()  
 
-  console.log(user)
 
-  const movies: moviesState["items"] = useAppSelector(state => state.movies.items );
+  const movies: moviesState["items"] = useAppSelector(state => state.movies.items);
   const top: resultTop['results']= useAppSelector(state => state.topMovies.items.results);
   const seriesPopular: seriesPopular[]= useAppSelector(state=> state.estrenos.items);
   const search:movies[]= useAppSelector(state=> state.searchMovies.items);
@@ -38,20 +37,27 @@ export function Home() {
     dispatch(getEstrenos())
     }else dispatch(searchMovies(query))
   }, [params]);
-
+console.log(movies[4].backdrop_path)
   if(loading) return <Loading/>
 
   return (
     <section >
       <NavBar/>
-      <div className=" bg-primary-100 flex gap-6">
+      <div className=" bg-primary-100 flex ">
       <SideBar />
-      <main className="flex flex-col items-center w-[70%]">
+      <main className="flex flex-col items-center">
      {  search.length?(
       <ContainerMovies movie={search}/>
      ):
      (
-      <div className="flex flex-col items-center">
+      <div className="">
+       <img src={`https://image.tmdb.org/t/p/w1280/${movies[8].backdrop_path}`} alt="asdasd" 
+        className="flex absolute w-[80%] h-[40vh] bg-center"/>
+        <div className="absolute">
+          <h1>{movies[8].title}</h1>
+        </div>
+       
+      <div className="flex flex-col items-center gap-4 w-[80%] ml-4">
       <MovieCard movie={movies}
         title={'popular'}
         subtitle={'movies'}
@@ -65,6 +71,7 @@ export function Home() {
       title={'tv popular'}
       subtitle={'series '}
       clase={'serie'}/>
+      </div>
       </div>
       )}
       </main>

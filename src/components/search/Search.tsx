@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSearchParams, useParams} from 'react-router-dom'
+import {useSearchParams} from 'react-router-dom'
 import {BsSearch} from 'react-icons/bs'
 
 export default function Search() {

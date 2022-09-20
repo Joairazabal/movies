@@ -3,7 +3,9 @@ export interface movies {
   id: number | undefined;
   title: string;
   name:null
-
+  profile_path:string|null
+  media_type:string
+  backdrop_path:string|null
 }
 
 export interface moviesState {
@@ -77,6 +79,8 @@ export interface seriesPopular{
   name:string
   poster_path: string | null
   title:null
+  profile_path:string|null
+  media_type:string
 }
 
 export interface typePopular{
@@ -84,3 +88,15 @@ export interface typePopular{
   loading:boolean
   error: Error | null
 }
+
+export interface person{
+  id:number | null
+  profile_path:string|null
+  name:string
+  poster_path:  null
+  title:null
+  media_type:string
+}
+ export interface back_drop{
+  backdrop_path:string | null
+ }
