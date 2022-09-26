@@ -13,7 +13,10 @@ const initialState:typeDetail={
     title: null,
     runtime: null,
     number_of_seasons:null,
-    first_air_date:null },
+    first_air_date:null,
+    backdrop_path:null,
+    actors:null
+},
     loading: false,
     error: null,
 };

@@ -37,6 +37,8 @@ export interface detail {
   runtime: number | null;
   number_of_seasons:number | null
   first_air_date: string | null
+  backdrop_path: string | null
+  actors: string[] | null
 }
 
 export interface typeDetail {
@@ -100,3 +102,12 @@ export interface person{
  export interface back_drop{
   backdrop_path:string | null
  }
+
+export interface credits{
+  id: string | undefined
+  cast: objectCast[]
+}
+export interface objectCast {
+  known_for_department: string
+  name: string
+}

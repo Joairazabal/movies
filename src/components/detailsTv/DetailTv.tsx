@@ -18,7 +18,7 @@ export default function DetailTv() {
       dispatch(setClearTv())
       dispatch(getTrailerTv(id));
       dispatch(getDetailTv(id));
-     
+      dispatch(setClearTv())
     }, [dispatch]);
 
   return (

@@ -18,6 +18,7 @@ const [page, setPage] = useState(1)
 
 useEffect(()=>{
 dispatch(getAllSeries(page))
+
 },[page])
 
   return (
@@ -39,7 +40,7 @@ dispatch(getAllSeries(page))
               title={el.name}
               id={el.id}
               poster_path= {el.poster_path}
-              clase={el.media_type}
+              clase={'tv'}
               key={index}
               />
             )

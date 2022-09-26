@@ -37,7 +37,7 @@ export function Home() {
     dispatch(getEstrenos())
     }else dispatch(searchMovies(query))
   }, [params]);
-console.log(movies[4].backdrop_path)
+
   if(loading) return <Loading/>
 
   return (
@@ -50,14 +50,9 @@ console.log(movies[4].backdrop_path)
       <ContainerMovies movie={search}/>
      ):
      (
-      <div className="">
-       <img src={`https://image.tmdb.org/t/p/w1280/${movies[8].backdrop_path}`} alt="asdasd" 
-        className="flex absolute w-[80%] h-[40vh] bg-center"/>
-        <div className="absolute">
-          <h1>{movies[8].title}</h1>
-        </div>
+      
        
-      <div className="flex flex-col items-center gap-4 w-[80%] ml-4">
+      <div className="flex flex-col items-center gap-4 w-[80%] ml-4 ">
       <MovieCard movie={movies}
         title={'popular'}
         subtitle={'movies'}
@@ -70,9 +65,9 @@ console.log(movies[4].backdrop_path)
       movie={seriesPopular}
       title={'tv popular'}
       subtitle={'series '}
-      clase={'serie'}/>
+      clase={'tv'}/>
       </div>
-      </div>
+     
       )}
       </main>
       </div>
