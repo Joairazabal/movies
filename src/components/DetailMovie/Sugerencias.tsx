@@ -15,23 +15,26 @@ export default function Sugerencias() {
     return (
         <div className='flex flex-col items-center gap-8'>
 
-            <h1 className=' font-PT text-4xl text-secundary-50'>Sugerenciaas</h1>
-            <div className='grid grid-cols-5 gap-8 w-[70%] '>
+            <h1 className=' font-PT text-4xl text-secundary-50'>Suggestions</h1>
+            <div className='lg:grid lg:grid-cols-5 lg:gap-8 md:grid md:grid-cols-4 md:gap-8 lg:w-[70%] sm:grid-cols-1 sm:gap-4 sm:w-[85%]  '>
                 {
                 shortMovies ?. map(el => {
                     return (
-                        <Card poster_path={
-                                el.poster_path
-                            }
-                            title={
-                                el.title
-                            }
-                            clase={
-                                el.media_type
-                            }
-                            id={
+                        <div className='my-4'
+                            key={
                                 el.id
-                            }/>
+                        }>
+                            <Card poster_path={
+                                    el.poster_path
+                                }
+                                title={
+                                    el.title
+                                }
+                                clase={'movie'}
+                                id={
+                                    el.id
+                                }/>
+                        </div>
                     )
                 })
             } </div>

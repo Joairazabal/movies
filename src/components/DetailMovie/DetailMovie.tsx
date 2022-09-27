@@ -20,7 +20,7 @@ export default function DetailMovie() {
         dispatch(getDetail(id));
         dispatch(getTrailer(id));
         dispatch(getActors(id))
-    }, [dispatch]);
+    }, [dispatch, params]);
 
     const details = useAppSelector(state => state.detail.items);
     const trailers = useAppSelector(state => state.trailer.items);
@@ -39,16 +39,31 @@ export default function DetailMovie() {
     return (
         <div className=" bg-primary-100 w-full">
             <NavBar/> {
-            details.id ? <div className="bg-primary-100 flex flex-col items-center  ">
+            details.id ? <div className="bg-primary-100 flex flex-col items-center ">
                 <img src={
                         `https://image.tmdb.org/t/p/original/${
                             details.backdrop_path
                         }`
                     }
                     alt=""
-                    className="w-full top-[10vh] left-0 h-[130vh]"/>
-                <div className="top-[10vh] left-0 w-[100%] h-[130vh] absolute from-secundary-300 to-secundary-400 bg-gradient-to-br"/>
-                <div className="absolute left-14 bottom-[-18vh] ">
+                    className="w-full top-[10vh] left-0 h-[130vh]  sm:hidden lg:block md:hidden "/>
+                <img src={
+                        `https://image.tmdb.org/t/p/w300/${
+                            details.backdrop_path
+                        }`
+                    }
+                    alt=""
+                    className="w-full top-[10vh] left-0 h-[120vh] lg:hidden sm:block md:hidden"/>
+
+                <img src={
+                        `https://image.tmdb.org/t/p/w780/${
+                            details.backdrop_path
+                        }`
+                    }
+                    alt=""
+                    className="w-full top-[10vh] left-0 h-[120vh] lg:hidden sm:hidden md:block"/>
+                <div className="top-[10vh] left-0 w-[100%] h-[130vh] absolute from-primary-100 to-secundary-400 bg-gradient-to-br"/>
+                <div className="absolute left-14 lg:bottom-[-18vh] sm:bottom-[-24vh] ">
                     <div className="gap-2 flex flex-col ">
                         <img src={
                                 `https://image.tmdb.org/t/p/w500/${
@@ -56,7 +71,7 @@ export default function DetailMovie() {
                                 }`
                             }
                             alt=""
-                            className=" lg:h-72 lg:w-52 sm:h-52 sm:w-36 rounded-lg relative mb-2"/>
+                            className=" lg:h-72 lg:w-52 sm:h-64 sm:w-44 rounded-lg relative mb-2"/>
                         <h1 className=" lg:text-2xl font-PT text-secundary lg:break-words sm:text-lg">
                             {
                             details.title
@@ -66,38 +81,38 @@ export default function DetailMovie() {
                             `${hs} ${minute} `
                         }
                             - {estreno}</h3>
-                        <div className="flex items-center gap-2">
+                        <li className="flex items-center gap-2">
                             <strong className="font-PT lg:text-xl sm:text-xs text-secundary-50 ">Genres:</strong>
                             {
                             details.genres ?. map(el => {
                                 return <h3 key={
                                         el.id
                                     }
-                                    className='text-secundary font-Nunito sm:text-xs lg:text-lg break-words text-start'>
+                                    className='flex text-secundary font-Nunito sm:text-xs lg:text-lg break-words text-start'>
                                     {
                                     `${
                                         el.name
                                     } `
                                 } </h3>;
                             })
-                        } </div>
-                        <div className="flex items-start gap-2  mb-14">
+                        } </li>
+                        <div className="flex items-start gap-2 lg:mb-14 ">
                             <strong className="font-PT lg:text-xl sm:text-xs text-secundary-50 ">Actors:
                             </strong>
-                            <p className='text-secundary font-Nunito sm:text-xs lgtext-lg flex'>
+                            <p className='text-secundary font-Nunito sm:text-xs lg:text-lg flex'>
                                 {
                                 details.actors ?. join(', ')
                             }</p>
                         </div>
-                        <div className="flex lg:justify-start sm:justify-center">
-                            <p className="break-words text-secundary font-Nunito lg:text-2xl lg:leading-[2rem] w-[70%] lg:tracking-wide sm:text-sm">
+                        <div className="flex lg:justify-start">
+                            <p className="break-words text-secundary font-Nunito lg:text-2xl leading-[2rem] lg:w-[70%] sm:w-[85%] lg:tracking-wide sm:text-sm">
                                 {
                                 details.overview
                             }</p>
                         </div>
                     </div>
                 </div>
-                <section className="w-[70%] flex flex-col gap-10 justify-center my-28 bg-secundary-200 py-10 items-center rounded-lg">
+                <section className="lg:w-[70%] sm:w-[85%] flex flex-col gap-10 justify-center my-28 bg-secundary-200 py-10 items-center rounded-lg">
                     {
                     trailers ?. map(el => {
                         return (
@@ -107,7 +122,7 @@ export default function DetailMovie() {
                                     }`
                                 }
                                 allowFullScreen
-                                className=" h-[30rem] w-full"/>
+                                className=" lg:h-[30rem] lg:w-full sm:h-64 sm:w-full md:h-[30rem]"/>
                         )
                     })
                 }</section>
