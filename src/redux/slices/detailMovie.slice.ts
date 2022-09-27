@@ -54,7 +54,7 @@ return async (dispatch)=>{
 export const getActors= (id:string | undefined): AppThunk=>{
     return async(dispatch)=>{
         try{
-    const response= await urlActors(id)
+    const response= await urlActors(id, 'movie')
     const filterActors= response.data.cast.filter((el:objectCast)=> el.known_for_department === 'Acting')
     const actors:string[]= filterActors.map((el:objectCast)=>el.name )
     const shortActors:string[]= actors.splice(1,8)

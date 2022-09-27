@@ -19,8 +19,8 @@ export default function Card({poster_path, title, id, clase} : Props) {
                         !poster_path ? notImage : `https://image.tmdb.org/t/p/w500/${poster_path}`
                     }
                     alt={notImage}
-                    className='flex lg:h-[18rem] lg:w-[16rem] sm:h-[14rem] sm:w-[10rem]  rounded-[10px]'/>
-                <h1 className='lg:text-xl sm:text-lg break-words font-Nunito text-secundary mt-2 sm:w-[10rem]  '>
+                    className='flex lg:h-[16rem] lg:w-[16rem] sm:h-[14rem]   lg:rounded-[10px] sm:rounded-lg'/>
+                <h1 className='lg:text-xl sm:text-lg break-words font-Nunito text-secundary mt-2 sm:w-[10rem] text-center  '>
                     {title}</h1>
             </Link>
         </div>

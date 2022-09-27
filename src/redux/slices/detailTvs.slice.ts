@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { urlDetail, urlDetailTvs } from "../../api/getMovies";
 import { AppThunk } from "../store";
-import {  typeDetail } from "../types";
+import {  typeDetail, objectCast } from "../types";
+import { urlActors } from "../../api/getMovies";
 
 const initialState:typeDetail={
     items:{
@@ -29,8 +30,10 @@ const detailTv= createSlice({
         setDetailTv:(state,action)=>{
             state.items= action.payload
         },
-        setClearTv: ()=> initialState
-       
+        setClearTv: ()=> initialState,
+        setActorsTv:(state,action)=>{
+            state.items.actors=action.payload 
+            }
     }
 })
 
@@ -45,9 +48,25 @@ return async (dispatch)=>{
     }}
 }
 
+
+export const getActorsTv= (id:string | undefined): AppThunk=>{
+    return async(dispatch)=>{
+        try{
+    const response= await urlActors(id, 'movie')
+    const filterActors= response.data.cast.filter((el:objectCast)=> el.known_for_department === 'Acting')
+    const actors:string[]= filterActors.map((el:objectCast)=>el.name )
+    const shortActors:string[]= actors.splice(1,8)
+    dispatch(setActorsTv(shortActors))
+    }catch(error){
+        console.error(error)
+    }
+    }
+}
+
 export const{
     setDetailTv,
-    setClearTv
+    setClearTv,
+    setActorsTv
 } = detailTv.actions
 
 export default detailTv.reducer

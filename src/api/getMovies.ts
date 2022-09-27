@@ -44,6 +44,6 @@ export const urlAllSeries= (page:number)=>{
   return axios(`https://api.themoviedb.org/3/discover/tv?api_key=${api_key}&language=en-US&page=${page}`)
 }
 
-export const urlActors= (id:string | undefined)=>{
-return axios(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${api_key}&language=en-US`)
+export const urlActors= (id:string | undefined, clase: string)=>{
+return axios(`https://api.themoviedb.org/3/${clase}/${id}/credits?api_key=${api_key}&language=en-US`)
 }

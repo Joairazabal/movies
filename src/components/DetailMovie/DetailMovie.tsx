@@ -72,7 +72,7 @@ export default function DetailMovie() {
                             }
                             alt=""
                             className=" lg:h-72 lg:w-52 sm:h-64 sm:w-44 rounded-lg relative mb-2"/>
-                        <h1 className=" lg:text-2xl font-PT text-secundary lg:break-words sm:text-lg">
+                        <h1 className=" lg:text-xl font-PT text-secundary lg:break-words sm:text-lg">
                             {
                             details.title
                         }</h1>
@@ -82,7 +82,7 @@ export default function DetailMovie() {
                         }
                             - {estreno}</h3>
                         <li className="flex items-center gap-2">
-                            <strong className="font-PT lg:text-xl sm:text-xs text-secundary-50 ">Genres:</strong>
+                            <strong className="font-PT lg:text-lg sm:text-xs text-secundary-50 ">Genres:</strong>
                             {
                             details.genres ?. map(el => {
                                 return <h3 key={
@@ -97,15 +97,15 @@ export default function DetailMovie() {
                             })
                         } </li>
                         <div className="flex items-start gap-2 lg:mb-14 ">
-                            <strong className="font-PT lg:text-xl sm:text-xs text-secundary-50 ">Actors:
+                            <strong className="font-PT lg:text-lg sm:text-xs text-secundary-50 ">Actors:
                             </strong>
                             <p className='text-secundary font-Nunito sm:text-xs lg:text-lg flex'>
                                 {
                                 details.actors ?. join(', ')
                             }</p>
                         </div>
-                        <div className="flex lg:justify-start">
-                            <p className="break-words text-secundary font-Nunito lg:text-2xl leading-[2rem] lg:w-[70%] sm:w-[85%] lg:tracking-wide sm:text-sm">
+                        <div className="flex lg:justify-start ">
+                            <p className="break-words text-secundary font-Nunito lg:text-xl leading-[2rem] lg:w-[70%] sm:w-[85%] lg:tracking-wide sm:text-sm font-semibold">
                                 {
                                 details.overview
                             }</p>

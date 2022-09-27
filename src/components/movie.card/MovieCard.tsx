@@ -13,14 +13,14 @@ interface Props {
 
 export default function MovieCard({movie, title, subtitle, clase} : Props) {
     return (
-        <section className='mt-10 '>
-            <div className='flex items-center gap-2 mb-8'>
-                <h1 className=' font-PT text-secundary-50 text-4xl'>
+        <section className='mt-10 w-full'>
+            <div className='flex lg:items-center sm:justify-center lg:justify-start gap-2 mb-8 '>
+                <h1 className=' font-PT text-secundary-50 lg:text-4xl sm:text-2xl'>
                     {title}</h1>
-                <strong className=' font-Nunito text-4xl text-secundary'>
+                <strong className=' font-Nunito lg:text-4xl sm:text-2xl text-secundary'>
                     {subtitle}</strong>
             </div>
-            <div className='grid grid-cols-5  gap-8'>
+            <div className='lg:grid lg:grid-cols-5 lg:gap-8 sm:grid sm:grid-cols-1 sm:gap-4  md:grid md:grid-cols-2 md:gap-4'>
                 {
                 movie ?. map(el => {
                     return (
