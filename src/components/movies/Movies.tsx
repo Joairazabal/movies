@@ -24,11 +24,7 @@ export default function Movies() {
             dispatch(allMovies(page))
         } else 
             dispatch(searchMovies(query))
-
-
         
-
-
     }, [page, query])
 
     return (

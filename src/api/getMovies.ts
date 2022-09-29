@@ -9,8 +9,8 @@ export const getMovies = () =>
 export const genres = () =>
   axios("https://api.themoviedb.org/3/genre/movie/list?api_key=61801c4cf07fbdd51b37c4290fd4b299&language=en-US");
 
-export const urlAllMovies = (page:number) =>
-  axios(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&page=${page}`);
+export const urlAllMovies = (page:number, genre:string | null) =>
+  axios(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&page=${page}&with_genres=${genre}`);
 
 export const urlSearch = (name: string) =>
   axios(`https://api.themoviedb.org/3/search/movie?query=${name}`);

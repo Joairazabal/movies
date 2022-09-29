@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {useLocation, Location} from 'react-router-dom'
+import {useLocation, Location, useParams, useSearchParams} from 'react-router-dom'
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {populartyMovies} from "../../redux/slices/get.slice";
 import {movies, moviesState, resultTop, seriesPopular} from "../../redux/types";
@@ -11,38 +11,41 @@ import {searchMovies} from "../../redux/slices/searchMovies.slice";
 import ContainerMovies from "../search/ContainerMovies";
 import NavBar from "../navbar/NavBar";
 import Loading from "../loading/Loading";
-import {useAuth0} from '@auth0/auth0-react'
+import {allMovies, filterMovies} from "../../redux/slices/allMovies.slice";
+import FilterMovies from "./FilterMovies";
+
 
 export function Home() {
     const dispatch = useAppDispatch();
     const params: Location = useLocation();
     let query = params.search.substring(8).toString();
-    const {user} = useAuth0()
+    let filtro = params.search.substring(7)
 
 
     const movies: moviesState["items"] = useAppSelector(state => state.movies.items);
     const top: resultTop['results'] = useAppSelector(state => state.topMovies.items.results);
     const seriesPopular: seriesPopular[] = useAppSelector(state => state.estrenos.items);
     const search: movies[] = useAppSelector(state => state.searchMovies.items);
+    const filters: movies[] = useAppSelector(state => state.allMovies.items)
 
     const [loading, setloading] = useState(true)
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
         setTimeout(() => {
             setloading(false)
         }, 500)
-        if (params.search === '' || query.length > 45) {
+        if (params.search.includes('genre')) {
+            dispatch(filterMovies(filtro, page))
+            console.log(filters)
+        } else if (params.search.includes('search')) {
+            dispatch(searchMovies(query))
+        } else {
             dispatch(populartyMovies());
             dispatch(topMovies())
             dispatch(getEstrenos())
-        } else 
-            dispatch(searchMovies(query))
-
-
-        
-
-
-    }, [params]);
+        }
+    }, [params, filtro, page]);
 
     if (loading) 
         return <Loading/>
@@ -58,7 +61,11 @@ export function Home() {
                 <SideBar/>
                 <main className="flex flex-col items-center  sm:w-[100%]">
                     {
-                    search.length ? (
+                    filters.length ? (
+                        <FilterMovies movies={filters}
+                            pages={page}
+                            setPage={setPage}/>
+                    ) : search.length ? (
                         <ContainerMovies movie={search}/>
                     ) : (
                         <div className="flex flex-col items-center gap-4 sm:w-[100%] lg:w-[80%] ml-4 ">

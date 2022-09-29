@@ -6,6 +6,7 @@ export interface movies {
   profile_path:string|null
   media_type:string
   backdrop_path:string|null
+  genre_ids:number[]
 }
 
 export interface moviesState {
