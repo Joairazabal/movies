@@ -81,7 +81,7 @@ export default function Login({usuario} : any) {
 
                         <button className='border  bg-secundary-50  rounded-md text-secundary w-max px-1 py-[3px] flex items-center gap-2'
                             onClick={
-                                () => signInWithRedirect(auth, googleProvider)
+                                () => console.log('anda')
                         }>iniciar con google
                             <RiGoogleFill/></button>
                         <button className='border border-primary rounded-md text-secundary w-max px-1 py-[3px]'
