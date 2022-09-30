@@ -112,3 +112,11 @@ export interface objectCast {
   known_for_department: string
   name: string
 }
+
+export interface user{
+  displayName: string
+  email:string
+  accessToken:string
+  photoURL:string
+  uid:string
+}

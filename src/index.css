@@ -35,22 +35,10 @@
           box-shadow: 1px 5px 2px #0456c8;
         }
       }
-      .ring:before{
-        position: absolute;
-        content: '';
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 100%;
-        border-radius: 50%;
-        box-shadow: 0 0 5px rgba(255,255,255,.3);
-      }
-      @keyframes text {
-        50%{
-          color: black;
-        }
-      }
-
+      .forNow {
+        background: rgb(8,15,40);
+background: linear-gradient(90deg, rgba(8,15,40,1) 0%, rgba(13,19,43,1) 81%);
+      };
    
       
 }
@@ -59,4 +47,3 @@
   display: flex;
   justify-content: center;
 }
-

@@ -1,11 +1,16 @@
 import React from 'react'
-import {useAuth0} from '@auth0/auth0-react'
+import firebaseApp from '../../fireBase'
+import {signOut, getAuth} from 'firebase/auth'
 
 export default function Logout() {
 
-const {logout}=useAuth0();
-    
-  return (
-    <button onClick={()=>logout({ returnTo: 'http://localhost:3000/' })} className='text-secundary font-Nunito text-2xl border border-secundary-50 px-3 rounded-lg'>Logout</button>
-  )
+    const auth = getAuth(firebaseApp);
+
+
+    return (
+        <button onClick={
+                () => signOut(auth)
+            }
+            className='text-secundary-500 font-Nunito text-md rounded-lg'>Log out</button>
+    )
 }

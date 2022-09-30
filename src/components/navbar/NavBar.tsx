@@ -1,9 +1,14 @@
-import React, {useState} from "react";
+import React, { useState} from "react";
 import Search from "../search/Search";
 import {Link} from "react-router-dom";
 import NavMovile from "./NavMovile";
+import Logout from "../login/Logout";
+import useUser from "../../hooks/useUser";
+import Login from "../login/Login";
+import { user } from "../../redux/types";
+import PopUser from "./popUser";
 
-export default function () {
+export default function Navbar(): JSX.Element {
 
     const [close, setClose] = useState(false)
 
@@ -16,7 +21,9 @@ export default function () {
         setClose(false)
     }
 
-
+    const user:user|null= useUser();
+    
+console.log(user)
     return (
         <nav className="w-full bg-primary-200 flex h-[10vh] items-center justify-between top-0 ">
             <div className="flex w-auto gap-20 items-center ml-10">
@@ -36,8 +43,14 @@ export default function () {
                         </li>
                     </ul>
                 </div>
+              
             </div>
-            <div className="lg:mr-10 flex items-center lg:gap-8">
+            <div className="lg:mr-10 flex items-center lg:gap-8 ">
+                {user!==null?
+                <PopUser/>
+                :
+                <Link to='/login'><button className="text-secundary font-Nunito text-lg rounded-lg">Log in</button></Link>
+                }
                 <Search/>
             </div>
 
