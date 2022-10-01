@@ -48,12 +48,12 @@ export default function DetailMovie() {
                     alt=""
                     className="w-full top-[10vh] left-0 h-[130vh]  sm:hidden lg:block md:hidden "/>
                 <img src={
-                        `https://image.tmdb.org/t/p/w300/${
+                        `https://image.tmdb.org/t/p/w780/${
                             details.backdrop_path
                         }`
                     }
                     alt=""
-                    className="w-full top-[10vh] left-0 h-[120vh] lg:hidden sm:block md:hidden"/>
+                    className="w-full top-[10vh] left-0 h-[90vh] lg:hidden sm:block md:hidden object-fill"/>
 
                 <img src={
                         `https://image.tmdb.org/t/p/w780/${
@@ -61,7 +61,7 @@ export default function DetailMovie() {
                         }`
                     }
                     alt=""
-                    className="w-full top-[10vh] left-0 h-[120vh] lg:hidden sm:hidden md:block"/>
+                    className="w-full top-[10vh] left-0 h-[120vh] lg:hidden sm:hidden md:block object-fill"/>
                 <div className="top-[10vh] left-0 w-[100%] h-[130vh] absolute from-primary-100 to-secundary-400 bg-gradient-to-br"/>
                 <div className="absolute left-14 lg:bottom-[-18vh] sm:bottom-[-24vh] ">
                     <div className="gap-2 flex flex-col ">

@@ -34,26 +34,21 @@ export function Home() {
     useEffect(() => {
         setTimeout(() => {
             setloading(false)
-        }, 500)
+        }, 300)
         if (params.search.includes('genre')) {
             dispatch(filterMovies(filtro, page))
-            console.log(filters)
-        } else if (params.search.includes('search')) {
+        } else if (query.length > 3) {
             dispatch(searchMovies(query))
-        } else {
+        } else if( params.pathname === '/' && params.search ==='' || query === ''){
             dispatch(populartyMovies());
             dispatch(topMovies())
             dispatch(getEstrenos())
         }
-    }, [params, filtro, page]);
-
+    }, [params.search, filtro, page]);
+    
     if (loading) 
         return <Loading/>
-
-
     
-
-
     return (
         <section>
             <NavBar/>
@@ -61,11 +56,11 @@ export function Home() {
                 <SideBar/>
                 <main className="flex flex-col items-center  sm:w-[100%]">
                     {
-                    filters.length ? (
+                    params.search.includes('genre') ? (
                         <FilterMovies movies={filters}
                             pages={page}
                             setPage={setPage}/>
-                    ) : search.length ? (
+                    ) : query.length>3? (
                         <ContainerMovies movie={search}/>
                     ) : (
                         <div className="flex flex-col items-center gap-4 sm:w-[100%] lg:w-[80%] ml-4 ">

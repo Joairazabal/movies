@@ -18,8 +18,8 @@ setOpen(true)
   return (
     <div>
     <button onClick={(e)=> handleOpen(e)}><img src={user.photoURL} alt="" className='h-10 rounded-full active:border active:border-secundary-50' /></button>
-    <div className={open?"visible bg-secundary-200 absolute w-[15rem] mt-3 h-[10rem] rounded-lg  ": 'hidden '}>
-        <div className="absolute content-[''] left-[10%] bottom-[90%] translate-x-[-50%] h-5 w-5 bg-secundary-200 rotate-[45deg]"></div>
+    <div className={open?"visible bg-secundary-200 absolute w-[15rem] mt-3 h-[10rem] rounded-lg   ": 'hidden '}>
+        <div className="absolute content-[''] left-[10%]  bottom-[90%] translate-x-[-50%] h-5 w-5 bg-secundary-200 rotate-[45deg]"></div>
         <div className=' flex items-center gap-3 mt-4 ml-4'>
         <img src={user.photoURL} alt=""  className='h-10 rounded-full'/>
         <label className='text-md text-secundary-50 font-PT font-semibold' >{user.displayName}</label>

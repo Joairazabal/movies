@@ -8,16 +8,17 @@ import {
     signInWithRedirect
 } from 'firebase/auth'
 import {RiGoogleFill} from 'react-icons/ri'
+import {useNavigate} from 'react-router-dom'
 
 export default function Login({usuario} : any) {
     const auth = getAuth(firebaseApp);
     const googleProvider = new GoogleAuthProvider();
-    console.log(usuario, 'aca')
-    const [user, setUser] = useState(false)
-
+    const [user, setUser] = useState(false);
     const [form, setForm] = useState({email: '', password: ''})
-
+    
     type FormElment = React.FormEvent < HTMLFormElement >;
+    
+    const navigate= useNavigate();
 
     const handleRegister = (e : any) => {
         e.preventDefault();
@@ -38,11 +39,20 @@ export default function Login({usuario} : any) {
         event.preventDefault();
         if (user) {
             const usuario = await createUserWithEmailAndPassword(auth, form.email, form.password)
+            navigate('/')
         } else {
             signInWithEmailAndPassword(auth, form.email, form.password)
+            navigate('/')
         }
     }
 
+
+    const handleGoogleRedirect=(e:React.MouseEvent<HTMLButtonElement>)=>{
+    e.preventDefault();
+    signInWithRedirect(auth, googleProvider);
+    navigate('/')
+
+    }
 
     return (
         <div className=' forNow h-screen flex justify-center items-center '>
@@ -81,7 +91,7 @@ export default function Login({usuario} : any) {
 
                         <button className='border  bg-secundary-50  rounded-md text-secundary w-max px-1 py-[3px] flex items-center gap-2'
                             onClick={
-                                () => signInWithRedirect(auth, googleProvider)
+                                (e) => handleGoogleRedirect(e)
                         }>iniciar con google
                             <RiGoogleFill/></button>
                         <button className='border border-primary rounded-md text-secundary w-max px-1 py-[3px]'
