@@ -39,21 +39,21 @@ export default function DetailMovie() {
     return (
         <div className=" bg-primary-100 w-full">
             <NavBar/> {
-            details.id ? <div className="bg-primary-100 flex flex-col items-center ">
+            details.id ? <div className="bg-primary-100 grid grid-cols-[1fr] grid-rows-[1fr] lg:items-end sm:items-start ">
                 <img src={
                         `https://image.tmdb.org/t/p/original/${
                             details.backdrop_path
                         }`
                     }
                     alt=""
-                    className="w-full top-[10vh] left-0 h-[130vh]  sm:hidden lg:block md:hidden "/>
+                    className="w-full gridP lg:h-[130vh] md:hidden sm:hidden lg:block"/>
                 <img src={
                         `https://image.tmdb.org/t/p/w780/${
                             details.backdrop_path
                         }`
                     }
                     alt=""
-                    className="w-full top-[10vh] left-0 h-[90vh] lg:hidden sm:block md:hidden object-fill"/>
+                    className="w-full left-0  gridP lg:hidden sm:block sm:h-[60vh] md:hidden object-fill"/>
 
                 <img src={
                         `https://image.tmdb.org/t/p/w780/${
@@ -61,9 +61,9 @@ export default function DetailMovie() {
                         }`
                     }
                     alt=""
-                    className="w-full top-[10vh] left-0 h-[120vh] lg:hidden sm:hidden md:block object-fill"/>
-                <div className="top-[10vh] left-0 w-[100%] h-[130vh] absolute from-primary-100 to-secundary-400 bg-gradient-to-br"/>
-                <div className="absolute left-14 lg:bottom-[-18vh] sm:bottom-[-24vh] ">
+                    className="w-full  left-0  lg:hidden gridP sm:hidden md:block object-fill"/>
+            
+                <div className="gridP grid place-items-center lg:h-[130vh] from-primary-100 to-secundary-400 bg-gradient-to-br  sm:h-[100vh] sm:pl-8 sm:pt-[3rem]">
                     <div className="gap-2 flex flex-col ">
                         <img src={
                                 `https://image.tmdb.org/t/p/w500/${
@@ -71,7 +71,7 @@ export default function DetailMovie() {
                                 }`
                             }
                             alt=""
-                            className=" lg:h-72 lg:w-52 sm:h-64 sm:w-44 rounded-lg relative mb-2"/>
+                            className=" lg:h-72 lg:w-52 sm:h-44 sm:w-32 rounded-lg mb-2"/>
                         <h1 className=" lg:text-xl font-PT text-secundary lg:break-words sm:text-lg">
                             {
                             details.title
@@ -104,17 +104,18 @@ export default function DetailMovie() {
                                 details.actors ?. join(', ')
                             }</p>
                         </div>
-                        <div className="flex lg:justify-start ">
-                            <p className="break-words text-secundary font-Nunito lg:text-xl leading-[2rem] lg:w-[70%] sm:w-[85%] lg:tracking-wide sm:text-sm font-semibold">
+                        <div className="flex lg:justify-start sm:mt-14 sm:grid sm:gap-4">
+                            <h3 className="text-secundary-50 text-2xl font-Nunito sm:block lg:hidden">Overview</h3>
+                            <p className="break-words text-secundary font-Nunito lg:text-xl leading-[2rem] lg:w-[70%] sm:w-[85%] lg:tracking-wide sm:text-sm font-semibold ">
                                 {
                                 details.overview
                             }</p>
                         </div>
                     </div>
                 </div>
-                <section className="lg:w-[70%] sm:w-[85%] flex flex-col gap-10 justify-center my-28 bg-secundary-200 py-10 items-center rounded-lg">
-                    {
-                    trailers ?. map(el => {
+                <section className=" flex flex-col justify-center  items-center ">
+                    <div className="lg:w-[70%] sm:w-[85%] lg:my-28 bg-secundary-200 rounded-lg lg:py-10   ">
+                    {trailers ?. map(el => {
                         return (
                             <iframe src={
                                     `${video}${
@@ -122,10 +123,12 @@ export default function DetailMovie() {
                                     }`
                                 }
                                 allowFullScreen
-                                className=" lg:h-[30rem] lg:w-full sm:h-64 sm:w-full md:h-[30rem]"/>
+                                className=" lg:h-[30rem] lg:w-full sm:h-64 sm:w-full md:h-[30rem] sm:my-8"/>
                         )
                     })
-                }</section>
+                }
+                </div>
+                </section>
             </div> : <h1>error</h1>
         }
             <div>
