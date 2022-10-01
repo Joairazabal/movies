@@ -40,6 +40,7 @@ export interface detail {
   first_air_date: string | null
   backdrop_path: string | null
   actors: string[] | null
+  name:string | null
 }
 
 export interface typeDetail {

@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import useUser from '../../hooks/useUser'
 import {user} from '../../redux/types'
+import Login from '../login/Login'
 import Logout from '../login/Logout'
 
 export default function MovilMenu() {
@@ -81,7 +82,10 @@ export default function MovilMenu() {
                                <li><Link to={el.link}> <a className='active:text-secundary-50'>{el.name}</a></Link></li> 
                             )
                         })}
-                    <Logout/>
+                    {user?
+                    <Logout/>:
+                    <Link to={'/login'}><span className='text-xl text-secundary'>Are you new?<strong className='text-2xl text-secundary-50'> Sign up</strong> </span></Link>
+                    }
                     </ul>
                 </div>
             </div>

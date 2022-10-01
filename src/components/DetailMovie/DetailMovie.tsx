@@ -8,6 +8,8 @@ import {video} from "../../api/getMovies";
 import {getTrailer} from "../../redux/slices/getTrailer.slice";
 import {setClearState} from "../../redux/slices/getTrailerTv.slice";
 import Sugerencias from './Sugerencias'
+import Loading from "../loading/Loading";
+import {RiErrorWarningLine} from 'react-icons/ri'
 
 export default function DetailMovie() {
     const dispatch = useAppDispatch();
@@ -24,6 +26,7 @@ export default function DetailMovie() {
 
     const details = useAppSelector(state => state.detail.items);
     const trailers = useAppSelector(state => state.trailer.items);
+    const loading= useAppSelector(state=> state.detail.loading)
 
     const runtime: number = details.runtime ? details.runtime / 60 : 0
     const time = runtime.toFixed(2)
@@ -35,6 +38,8 @@ export default function DetailMovie() {
     }m`
 
     const estreno = details.release_date ?. slice(0, 4)
+
+    if(loading) return <Loading/>
 
     return (
         <div className=" bg-primary-100 w-full">
@@ -61,9 +66,9 @@ export default function DetailMovie() {
                         }`
                     }
                     alt=""
-                    className="w-full  left-0  lg:hidden gridP sm:hidden md:block object-fill"/>
+                    className="w-full  left-0  md:h-[60vh] lg:hidden gridP sm:hidden md:block object-fill"/>
             
-                <div className="gridP grid place-items-center lg:h-[130vh] from-primary-100 to-secundary-400 bg-gradient-to-br  sm:h-[100vh] sm:pl-8 sm:pt-[3rem]">
+                <div className="gridP grid  lg:items-center sm:items-end md:items-center md:pt-10 lg:h-[130vh] from-primary-100 to-secundary-400 bg-gradient-to-br  sm:h-[100vh] md:h-[70vh] sm:pl-8 sm:pt-[3rem]">
                     <div className="gap-2 flex flex-col ">
                         <img src={
                                 `https://image.tmdb.org/t/p/w500/${
@@ -104,7 +109,7 @@ export default function DetailMovie() {
                                 details.actors ?. join(', ')
                             }</p>
                         </div>
-                        <div className="flex lg:justify-start sm:mt-14 sm:grid sm:gap-4">
+                        <div className="flex lg:justify-start sm:mt-14 sm:grid sm:gap-4 md:mt-0">
                             <h3 className="text-secundary-50 text-2xl font-Nunito sm:block lg:hidden">Overview</h3>
                             <p className="break-words text-secundary font-Nunito lg:text-xl leading-[2rem] lg:w-[70%] sm:w-[85%] lg:tracking-wide sm:text-sm font-semibold ">
                                 {
@@ -115,7 +120,7 @@ export default function DetailMovie() {
                 </div>
                 <section className=" flex flex-col justify-center  items-center ">
                     <div className="lg:w-[70%] sm:w-[85%] lg:my-28 bg-secundary-200 rounded-lg lg:py-10   ">
-                    {trailers ?. map(el => {
+                    {trailers? trailers.map(el => {
                         return (
                             <iframe src={
                                     `${video}${
@@ -125,13 +130,16 @@ export default function DetailMovie() {
                                 allowFullScreen
                                 className=" lg:h-[30rem] lg:w-full sm:h-64 sm:w-full md:h-[30rem] sm:my-8"/>
                         )
-                    })
+                    }): <div className="flex justify-center items-center gap-2 flex-col">
+                        <RiErrorWarningLine className="lg:h-14 lg:w-14 sm:h-10 sm:w-10 text-secundary-50"/>
+                        <span className=" lg:text-2xl sm:text-lg text-secundary-50 font-PT">No trailer found</span>
+                        </div>
                 }
                 </div>
                 </section>
             </div> : <h1>error</h1>
         }
-            <div>
+            <div className="mt-10">
                 <Sugerencias/>
             </div>
         </div>

@@ -5,7 +5,7 @@ import { moviesState } from "../types";
 
 const initialState: moviesState = {
   items: [],
-  loading: false,
+  loading: true,
   error: null,
 };
 
@@ -16,6 +16,9 @@ const movieSlice = createSlice({
     setMovies: (state, action) => {
       state.items = action.payload;
     },
+    setLoadingHome:(state)=>{
+      state.loading= false
+    }
   },
 });
 
@@ -32,6 +35,7 @@ export const populartyMovies = (): AppThunk => {
 };
 
 
-export const { setMovies } = movieSlice.actions;
+
+export const { setMovies, setLoadingHome } = movieSlice.actions;
 
 export default movieSlice.reducer;

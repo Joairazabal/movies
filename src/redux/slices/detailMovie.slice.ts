@@ -15,7 +15,8 @@ const initialState:typeDetail={
     number_of_seasons: null,
     first_air_date: null,
     backdrop_path:null,
-    actors:null
+    actors:null, 
+    name:null
     }
     ,
     loading: true,

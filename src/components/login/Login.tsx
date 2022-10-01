@@ -9,6 +9,7 @@ import {
 } from 'firebase/auth'
 import {RiGoogleFill} from 'react-icons/ri'
 import {useNavigate} from 'react-router-dom'
+import Navbar from '../navbar/NavBar'
 
 export default function Login({usuario} : any) {
     const auth = getAuth(firebaseApp);
@@ -55,8 +56,10 @@ export default function Login({usuario} : any) {
     }
 
     return (
-        <div className=' forNow h-screen flex justify-center items-center '>
-            <form action="" className='border  border-secundary-50 rounded-lg  flex flex-col justify-around h-[50%] w-[30%]'
+        <>
+        <Navbar/>
+        <div className=' forNow h-[90vh] flex justify-center items-center '>
+            <form action="" className='border  border-secundary-50 rounded-lg  flex flex-col justify-around lg:h-[50%] lg:w-[30%] sm:w-[80%] sm:h-[50%]'
                 onSubmit={
                     event => submitForm(event)
             }>
@@ -72,14 +75,14 @@ export default function Login({usuario} : any) {
                         <input onChange={
                                 event => submitHandler(event)
                             }
-                            className=' bg-primary-0 rounded-md border border-primary placeholder:text-xs w-[80%] mt-1'
+                            className=' bg-primary-0 rounded-md border text-secundary  border-primary placeholder:text-xs w-[80%] mt-1'
                             type='email'
                             placeholder='Enter email'
                             name='email'/>
                     </div>
                     <div className='flex flex-col w-full mt-4'>
                         <label className='text-sm text-secundary font-PT '>Password</label>
-                        <input className=' bg-primary-0 rounded-md border w-[80%] border-primary placeholder:text-xs mt-1' type='password' name='password'
+                        <input className=' bg-primary-0 rounded-md border w-[80%] border-primary text-secundary  placeholder:text-xs mt-1' type='password' name='password'
                             onChange={
                                 event => submitHandler(event)
                             }
@@ -105,5 +108,6 @@ export default function Login({usuario} : any) {
                 </div>
             </form>
         </div>
+        </>
     )
 }

@@ -24,7 +24,7 @@ export default function FilterMovies({movies, pages, setPage} : Props) {
                     () => setPage((prevPage : number) => prevPage + 1)
                 }
                 loader={<Loading/>}
-                className='lg:grid lg:grid-cols-5 lg:gap-8  lg:w-[85%] sm:grid sm:grid-cols-1 sm:w-[100%] sm:gap-4'>
+                className='lg:grid lg:grid-cols-5 lg:gap-8  lg:w-[85%] sm:grid sm:grid-cols-1 sm:w-[100%] sm:gap-4 sm:mt-10' >
                 {
                 movies ?. map((el, index) => {
                     return (

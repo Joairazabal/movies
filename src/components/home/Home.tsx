@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useLocation, Location, useParams, useSearchParams} from 'react-router-dom'
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {populartyMovies} from "../../redux/slices/get.slice";
+import {populartyMovies, setLoadingHome} from "../../redux/slices/get.slice";
 import {movies, moviesState, resultTop, seriesPopular} from "../../redux/types";
 import MovieCard from "../movie.card/MovieCard";
 import SideBar from "../sideBar/SideBar";
@@ -11,7 +11,7 @@ import {searchMovies} from "../../redux/slices/searchMovies.slice";
 import ContainerMovies from "../search/ContainerMovies";
 import NavBar from "../navbar/NavBar";
 import Loading from "../loading/Loading";
-import {allMovies, filterMovies} from "../../redux/slices/allMovies.slice";
+import {filterMovies} from "../../redux/slices/allMovies.slice";
 import FilterMovies from "./FilterMovies";
 
 
@@ -27,14 +27,12 @@ export function Home() {
     const seriesPopular: seriesPopular[] = useAppSelector(state => state.estrenos.items);
     const search: movies[] = useAppSelector(state => state.searchMovies.items);
     const filters: movies[] = useAppSelector(state => state.allMovies.items)
+    const loading = useAppSelector(state => state.movies.loading)
 
-    const [loading, setloading] = useState(true)
+
     const [page, setPage] = useState(1)
 
     useEffect(() => {
-        setTimeout(() => {
-            setloading(false)
-        }, 300)
         if (params.search.includes('genre')) {
             dispatch(filterMovies(filtro, page))
         } else if (query.length > 3) {
@@ -43,11 +41,14 @@ export function Home() {
             dispatch(populartyMovies());
             dispatch(topMovies())
             dispatch(getEstrenos())
+            setTimeout(()=>{
+                dispatch(setLoadingHome())
+
+            }, 500)
         }
     }, [params.search, filtro, page]);
     
-    if (loading) 
-        return <Loading/>
+    if (loading) return <Loading/>
     
     return (
         <section>
@@ -63,7 +64,7 @@ export function Home() {
                     ) : query.length>3? (
                         <ContainerMovies movie={search}/>
                     ) : (
-                        <div className="flex flex-col items-center gap-4 sm:w-[100%] lg:w-[80%] ml-4 ">
+                        <div className="flex flex-col items-center gap-4 sm:w-[70%] lg:w-[80%] ml-4 ">
                             <MovieCard movie={movies}
                                 title={'popular'}
                                 subtitle={'movies'}
