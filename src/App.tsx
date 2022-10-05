@@ -9,6 +9,7 @@ import Login from './components/login/Login';
 import firebaseApp from './fireBase';
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
 import UserContext from './context/userContext';
+import Favorites from './favorites/Favorites';
 
 const auth = getAuth(firebaseApp);
 
@@ -41,6 +42,10 @@ function App() {
                 <Route path="/login"
                     element={<Login 
                     usuario={globalUser}/>
+                    }/>
+                <Route path="/favorites"
+                    element={<Favorites
+                    usuario={globalUser?.email}/>
                     }/>
             </Routes>
         </UserContext.Provider>

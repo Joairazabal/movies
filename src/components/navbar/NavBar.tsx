@@ -17,10 +17,7 @@ export default function Navbar(): JSX.Element {
             name: 'Home',
             link: '/'
         },
-        {
-            name: 'Favorites',
-            link: '/favorites'
-        },
+       
         {
             name: 'Movies',
             link: '/movies'
@@ -35,7 +32,7 @@ export default function Navbar(): JSX.Element {
             <div className="flex w-auto gap-20 items-center lg:ml-10 sm:ml-4">
                 <div className="z-20">
                     <Link to={'/'}>
-                    <h1 className=' font-Logo font-black text-secundary-50 lg:text-6xl sm:text-4xl  '>Ji</h1>
+                    <h1 className=' font-Logo font-black text-secundary-50 lg:text-6xl sm:text-4xl md:text-5xl '>Ji</h1>
                     </Link>
                 </div>
                 <div className=" lg:block sm:hidden">
@@ -46,7 +43,9 @@ export default function Navbar(): JSX.Element {
                         <Link to={el.link}>{el.name}</Link>
                         </li>
                        )})}
-                     
+                     <li className="border-l-2 border-secundary-50 pl-2">
+                        <Link to={user?'/favorites':'/login'}>Favorites</Link>
+                        </li>
                         
                     </ul>
                 </div>

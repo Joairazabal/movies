@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {allMovies} from '../../redux/slices/allMovies.slice';
+import { suggestionsMovies} from '../../redux/slices/allMovies.slice';
 import Card from '../movie.card/Card';
 
 export default function Sugerencias() {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(allMovies(4))
+        dispatch(suggestionsMovies(100))
     }, [])
 
     const movies = useAppSelector(state => state.allMovies.items)

@@ -58,8 +58,8 @@ export default function DetailTv() {
                 alt=""
                 className="w-full  left-0  lg:hidden gridP sm:hidden md:block object-fill"/>
         
-            <div className="gridP grid  items-center lg:h-[130vh] from-primary-100 to-secundary-400 bg-gradient-to-br  sm:h-[100vh] sm:pl-8 sm:pt-[3rem]">
-                    <div className="flex flex-col gap-3">
+            <div className="gridP grid  lg:items-center sm:items-end md:items-center md:pt-10 lg:h-[130vh] from-primary-100 to-secundary-400 bg-gradient-to-br sm:h-[60%]  md:h-[70vh] sm:pl-8 sm:pt-[3rem]">
+                    <div className="gap-2 flex flex-col sm:justify-center md:justify-start sm:-mt-10 ">
                         <img src={
                                 `https://image.tmdb.org/t/p/w500/${
                                     detailsTv.poster_path
@@ -116,7 +116,7 @@ export default function DetailTv() {
                             </div>
                         ) : null
                     }
-                        <div className="flex flex-col my-4 lg:justify-start ">
+                        <div className="lex lg:justify-start sm:flex sm:justify-end sm:h-[35%] sm:flex-col sm:gap-4 md:mt-0 ">
                         <h3 className="text-secundary-50 text-2xl font-Nunito sm:block lg:hidden">Overview</h3>
                             <p className="break-words text-secundary font-Nunito lg:text-xl leading-[2rem] lg:w-[70%] sm:w-[85%] lg:tracking-wide sm:text-sm font-semibold">
                                 {

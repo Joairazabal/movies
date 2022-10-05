@@ -6,8 +6,8 @@ export const video = "https://www.youtube.com/embed/";
 export const getMovies = () =>
   axios("https://api.themoviedb.org/3/movie/popular?api_key=61801c4cf07fbdd51b37c4290fd4b299&language=en-US&page=1");
 
-export const genres = () =>
-  axios("https://api.themoviedb.org/3/genre/movie/list?api_key=61801c4cf07fbdd51b37c4290fd4b299&language=en-US");
+export const genres = (clase:string) =>
+  axios(`https://api.themoviedb.org/3/genre/${clase}/list?api_key=61801c4cf07fbdd51b37c4290fd4b299&language=en-US`);
 
 export const urlAllMovies = (page:number, genre:string | null) =>
   axios(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&page=${page}&with_genres=${genre}`);
@@ -40,8 +40,8 @@ export const urlDetailTvs= (tv_id:string | undefined)=>{
   return axios(`https://api.themoviedb.org/3/tv/${tv_id}?api_key=${api_key}&language=en-US`)
 }
 
-export const urlAllSeries= (page:number)=>{
-  return axios(`https://api.themoviedb.org/3/discover/tv?api_key=${api_key}&language=en-US&page=${page}`)
+export const urlAllSeries= (page:number,genre:null | string)=>{
+  return axios(`https://api.themoviedb.org/3/discover/tv?api_key=${api_key}&language=en-US&page=${page}&with_genres=${genre}`)
 }
 
 export const urlActors= (id:string | undefined, clase: string)=>{

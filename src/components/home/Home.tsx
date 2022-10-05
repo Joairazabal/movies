@@ -13,6 +13,7 @@ import NavBar from "../navbar/NavBar";
 import Loading from "../loading/Loading";
 import {filterMovies} from "../../redux/slices/allMovies.slice";
 import FilterMovies from "./FilterMovies";
+import { filterTvSeries } from "../../redux/slices/allSeries.slice";
 
 
 export function Home() {
@@ -20,6 +21,7 @@ export function Home() {
     const params: Location = useLocation();
     let query = params.search.substring(8).toString();
     let filtro = params.search.substring(7)
+    
 
 
     const movies: moviesState["items"] = useAppSelector(state => state.movies.items);
@@ -27,17 +29,22 @@ export function Home() {
     const seriesPopular: seriesPopular[] = useAppSelector(state => state.estrenos.items);
     const search: movies[] = useAppSelector(state => state.searchMovies.items);
     const filters: movies[] = useAppSelector(state => state.allMovies.items)
+    const filtersTv: seriesPopular[]= useAppSelector(state=> state.allSeries.items)
     const loading = useAppSelector(state => state.movies.loading)
 
 
     const [page, setPage] = useState(1)
 
     useEffect(() => {
-        if (params.search.includes('genre')) {
+        if ( params.pathname === '/' && params.search.includes('movie')) {
             dispatch(filterMovies(filtro, page))
         } else if (query.length > 3) {
             dispatch(searchMovies(query))
-        } else if( params.pathname === '/' && params.search ==='' || query === ''){
+        }
+        else if(params.pathname === '/' && params.search.includes('serie')){
+            dispatch(filterTvSeries(filtro, page))
+        }
+        else if( params.pathname === '/' && params.search ==='' || query === ''){
             dispatch(populartyMovies());
             dispatch(topMovies())
             dispatch(getEstrenos())
@@ -50,21 +57,26 @@ export function Home() {
     
     if (loading) return <Loading/>
     
+    
     return (
         <section>
             <NavBar/>
             <div className=" bg-primary-100 flex ">
-                <SideBar/>
+                <SideBar clase='all'/>
                 <main className="flex flex-col items-center  sm:w-[100%]">
                     {
-                    params.search.includes('genre') ? (
-                        <FilterMovies movies={filters}
+                    params.search.includes('movie') ? (
+                        <FilterMovies movies={filters} 
                             pages={page}
                             setPage={setPage}/>
                     ) : query.length>3? (
                         <ContainerMovies movie={search}/>
-                    ) : (
-                        <div className="flex flex-col items-center gap-4 sm:w-[70%] lg:w-[80%] ml-4 ">
+                    ) : params.search.includes('serie')?
+                    <FilterMovies movies={filtersTv} 
+                            pages={page}
+                            setPage={setPage}/>
+                    :(
+                        <div className="flex flex-col items-center gap-4 sm:w-[70%] lg:w-[90%] ml-4 ">
                             <MovieCard movie={movies}
                                 title={'popular'}
                                 subtitle={'movies'}

@@ -2,30 +2,34 @@ import React, {useEffect, useState} from 'react'
 import {useAppDispatch, useAppSelector} from '../../hooks/redux'
 import {useLocation} from 'react-router-dom'
 import InfinitiScroll from 'react-infinite-scroll-component'
-import {getAllSeries} from '../../redux/slices/allSeries.slice'
+import {filterTvSeries, getAllSeries} from '../../redux/slices/allSeries.slice'
 import NavBar from '../navbar/NavBar'
 import SideBar from '../sideBar/SideBar'
 import Card from '../movie.card/Card'
+import Loading from '../loading/Loading'
 
 export default function Series() {
     const dispatch = useAppDispatch();
     const totalSeries = useAppSelector(state => state.allSeries.items);
     const params = useLocation();
-    let query = params.search.substring(8).toString();
-    const pages = Math.floor(Math.random() * 1000)
+    let filtro = params.search.substring(7)
 
     const [page, setPage] = useState(1)
 
     useEffect(() => {
+        if(filtro.length > 0){
+            dispatch(filterTvSeries(filtro, page))
+        }else{
         dispatch(getAllSeries(page))
+        }
+    }, [page, filtro])
 
-    }, [page])
-
+    console.log(filtro)
     return (
         <div className=' bg-primary-100 h-screen'>
             <NavBar/>
             <div className='bg-primary-100 flex gap-4  '>
-                <SideBar/>
+                <SideBar clase='tv'/>
                 <div className='mt-10 w-full '>
                     <InfinitiScroll dataLength={
                             totalSeries.length
@@ -35,7 +39,7 @@ export default function Series() {
                             () => setPage(prevPage => prevPage + 1)
                         }
                         loader={
-                            <h1>cargando man</h1>
+                            <Loading/>
                         }
                         className='lg:grid lg:grid-cols-5 lg:gap-8  lg:w-[85%] sm:grid sm:grid-cols-1 sm:w-[100%] sm:gap-4'>
                         {

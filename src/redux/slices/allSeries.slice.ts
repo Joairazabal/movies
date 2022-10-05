@@ -16,19 +16,31 @@ const serieSlice = createSlice({
     setAllSeries:(state,action)=>{
       state.items = [...state.items, ...action.payload];
     },
+    setFilterSeries:(state,action)=>{
+      state.items =[...state.items, ...action.payload]
+    }
   },
 });
 
 export const getAllSeries = (page:number): AppThunk=>{
 return async dispatch=>{
   try {
-    const response= await urlAllSeries(page)
+    const response= await urlAllSeries(page, null)
     dispatch(setAllSeries(response.data.results))
   } catch (error) {
     console.error(error)
   }
 }}
 
-export const {setAllSeries} = serieSlice.actions;
+export const filterTvSeries= (genreId:string, page:number): AppThunk=>{
+  return async (dispatch)=>{
+      const response= await urlAllSeries(page,genreId);
+      const filters= response.data.results
+      dispatch(setFilterSeries(filters))
+  
+  }
+  }
+
+export const {setAllSeries,setFilterSeries} = serieSlice.actions;
 
 export default serieSlice.reducer;

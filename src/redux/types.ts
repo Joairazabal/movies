@@ -1,6 +1,6 @@
 export interface movies {
   poster_path: string | null;
-  id: number | undefined;
+  id: number | null | string;
   title: string;
   name:null
   profile_path:string|null
@@ -21,9 +21,13 @@ export interface genre {
   id: number;
   name: string;
 }
+export interface allGenres{
+  genresMovies:Array<genre> | null
+  genresTv: Array<genre> | null
+}
 
 export interface typeGenres {
-  items: Array<genre>;
+  items: allGenres;
   loading: boolean;
   error: Error | null;
 }
@@ -73,13 +77,13 @@ export interface resultTop{
 
 export interface topMovies{
   poster_path: string | null
-  id: number
-  title: string
+  id: number | string | null
+  title: string | null
   name: null
 }
 
 export interface seriesPopular{
-  id:number | null | undefined 
+  id:number | null | string
   name:string
   poster_path: string | null
   title:null

@@ -22,7 +22,7 @@ export default function ({movie} : Props) {
     }
 
     return (
-        <section className='lg:grid lg:grid-cols-5 w-[80%] lg:gap-8 sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:gap-4 bg-primary-100 mt-10'>
+        <section className='lg:grid lg:grid-cols-5 w-[90%] lg:gap-8 sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:gap-4 bg-primary-100 mt-10'>
             {
             movie ?. map(el => {
                 return (

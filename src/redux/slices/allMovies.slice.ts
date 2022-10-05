@@ -17,6 +17,9 @@ const movieSlice = createSlice({
       state.items = [...state.items, ...action.payload];
     },
     setFilterMovies:(state, action)=>{
+      state.items = action.payload;
+    },
+    suggestionsMovie:(state,action)=>{
       state.items = action.payload
     }
   },
@@ -43,7 +46,17 @@ return async (dispatch)=>{
 }
 }
 
+export const suggestionsMovies= ( page:number): AppThunk=>{
+  return async (dispatch)=>{
+      const pageRandom= Math.floor(Math.random() * page);  
+      const response= await urlAllMovies(pageRandom, null);
+      const suggestions:movies[]= response.data.results
+      dispatch(suggestionsMovie(suggestions))
+  
+  }
+  }
 
-export const {setAllMovies, setFilterMovies} = movieSlice.actions;
+
+export const {setAllMovies, setFilterMovies,suggestionsMovie} = movieSlice.actions;
 
 export default movieSlice.reducer;

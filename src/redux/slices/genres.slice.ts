@@ -5,10 +5,10 @@ import { genre, typeGenres } from "../types";
 
 
 const initialState:typeGenres={
-    items : [{
-        id: 0,
-        name:""
-    }],
+    items : {
+        genresMovies:null,
+        genresTv:null
+    },
     loading:false,
     error:null
 }
@@ -18,26 +18,37 @@ const genreSlice = createSlice({
     name: "genres",
     initialState,
     reducers: {
-        setGenres:(state,action)=>{
-            state.items= action.payload
-        }
+        setGenresMovies:(state,action)=>{
+            state.items.genresMovies= action.payload
+        }, setGenresTv:(state,action)=>{
+          state.items.genresTv= action.payload
+      }
       }
   
   });
   
-  export const allGenres = (): AppThunk => {
+  export const allGenres = (clase:string): AppThunk => {
     return async (dispatch) => {
       try {
-        const response = await genres();
-        dispatch(setGenres(response.data.genres))
+        if(clase ==='all'){
+          const responseMovie= await genres('movie');
+          const responseTv= await genres('tv');
+          dispatch(setGenresMovies(responseMovie.data.genres));
+          dispatch(setGenresTv(responseTv.data.genres));
+        }else if(clase ==='movie'){
+          const responseMovie= await genres(clase);
+          dispatch(setGenresMovies(responseMovie.data.genres));
+        }else{
+          const responseTv= await genres('tv');dispatch(setGenresTv(responseTv.data.genres));
+        }
       } catch (error) {
-       console.log(error)
+       console.error(error)
       }
     };
   }
   
   export const {
-    setGenres
+    setGenresMovies, setGenresTv
   } = genreSlice.actions;
   
   export default genreSlice.reducer;
