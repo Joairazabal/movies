@@ -21,6 +21,8 @@ function App() {
     onAuthStateChanged(auth, (userFirebase) => {
         if (userFirebase) { // codigo en caso de que hay una sesion iniciada
             setGlobalUser(userFirebase)
+            const user= JSON.stringify(userFirebase.email)
+            localStorage.setItem('user', user)
         } else { // codigo en caso de no estar registrado
             setGlobalUser(null)
         }
@@ -44,8 +46,7 @@ function App() {
                     usuario={globalUser}/>
                     }/>
                 <Route path="/favorites"
-                    element={<Favorites
-                    usuario={globalUser?.email}/>
+                    element={<Favorites/>
                     }/>
             </Routes>
         </UserContext.Provider>

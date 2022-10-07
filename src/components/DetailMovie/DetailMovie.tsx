@@ -26,7 +26,7 @@ export default function DetailMovie() {
 
     const details = useAppSelector(state => state.detail.items);
     const trailers = useAppSelector(state => state.trailer.items);
-    const loading= useAppSelector(state=> state.detail.loading)
+    const loading = useAppSelector(state => state.detail.loading)
 
     const runtime: number = details.runtime ? details.runtime / 60 : 0
     const time = runtime.toFixed(2)
@@ -39,7 +39,12 @@ export default function DetailMovie() {
 
     const estreno = details.release_date ?. slice(0, 4)
 
-    if(loading) return <Loading/>
+    if (loading) 
+        return <Loading/>
+
+
+    
+
 
     return (
         <div className=" bg-primary-100 w-full">
@@ -58,7 +63,7 @@ export default function DetailMovie() {
                         }`
                     }
                     alt=""
-                    className="w-full left-0  gridP lg:hidden sm:block sm:h-[60vh] md:hidden object-fill"/>
+                    className="w-full left-0  gridP lg:hidden sm:block sm:h-[40vh] md:hidden object-fill"/>
 
                 <img src={
                         `https://image.tmdb.org/t/p/w780/${
@@ -67,9 +72,9 @@ export default function DetailMovie() {
                     }
                     alt=""
                     className="w-full  left-0  md:h-[60vh] lg:hidden gridP sm:hidden md:block object-fill"/>
-            
-                <div className="gridP grid  lg:items-center sm:items-end md:items-center md:pt-10 lg:h-[130vh] from-primary-100 to-secundary-400 bg-gradient-to-br sm:h-[60%]  md:h-[70vh] sm:pl-8 sm:pt-[3rem]">
-                    <div className="gap-2 flex flex-col sm:justify-center md:justify-start sm:-mt-10 ">
+
+                <div className="gridP grid  lg:items-center sm:items-end md:items-center md:pt-10 lg:h-[130vh] from-primary-100 to-secundary-400 bg-gradient-to-br sm:h-[60%] sm:pt-[18vh] sm:pb-[8rem]  md:h-[70vh] sm:pl-8 ">
+                    <div className="gap-2 flex flex-col sm:justify-center md:justify-start sm:-mt-10 lg:mt-8 ">
                         <img src={
                                 `https://image.tmdb.org/t/p/w500/${
                                     details.poster_path
@@ -77,7 +82,7 @@ export default function DetailMovie() {
                             }
                             alt=""
                             className=" lg:h-72 lg:w-52 sm:h-44 sm:w-32 rounded-lg mb-2"/>
-                        <h1 className=" lg:text-xl font-PT text-secundary lg:break-words sm:text-lg">
+                        <h1 className=" lg:text-2xl font-PT text-secundary lg:break-words sm:text-lg sm:mb-4 sm:-mt-2 lg:mb-0 sm:w-32 sm:text-center">
                             {
                             details.title
                         }</h1>
@@ -106,10 +111,10 @@ export default function DetailMovie() {
                             </strong>
                             <p className='text-secundary font-Nunito sm:text-xs lg:text-lg flex'>
                                 {
-                                details.actors ?. join(', ')
+                                details.actors ? details.actors.join(', ') : 'Actors noy found'
                             }</p>
                         </div>
-                        <div className="flex lg:justify-start sm:flex sm:justify-end sm:h-[35%] sm:flex-col sm:gap-4 md:mt-0">
+                        <div className="flex lg:justify-start sm:flex sm:justify-end sm:pt-10 sm:flex-col sm:gap-4 md:mt-0 ">
                             <h3 className="text-secundary-50 text-2xl font-Nunito sm:block lg:hidden">Overview</h3>
                             <p className="break-words text-secundary font-Nunito lg:text-xl leading-[2rem] lg:w-[70%] sm:w-[85%] lg:tracking-wide sm:text-sm font-semibold ">
                                 {
@@ -120,22 +125,22 @@ export default function DetailMovie() {
                 </div>
                 <section className=" flex flex-col justify-center  items-center ">
                     <div className="lg:w-[70%] sm:w-[85%] lg:my-28 bg-secundary-200 rounded-lg lg:py-10   ">
-                    {trailers? trailers.map(el => {
-                        return (
-                            <iframe src={
-                                    `${video}${
-                                        el.key
-                                    }`
-                                }
-                                allowFullScreen
-                                className=" lg:h-[30rem] lg:w-full sm:h-64 sm:w-full md:h-[30rem] sm:my-8"/>
-                        )
-                    }): <div className="flex justify-center items-center gap-2 flex-col">
-                        <RiErrorWarningLine className="lg:h-14 lg:w-14 sm:h-10 sm:w-10 text-secundary-50"/>
-                        <span className=" lg:text-2xl sm:text-lg text-secundary-50 font-PT">No trailer found</span>
+                        {
+                        trailers ? trailers.map(el => {
+                            return (
+                                <iframe src={
+                                        `${video}${
+                                            el.key
+                                        }`
+                                    }
+                                    allowFullScreen
+                                    className=" lg:h-[30rem] lg:w-full sm:h-64 sm:w-full md:h-[30rem] sm:my-8"/>
+                            )
+                        }) : <div className="flex justify-center items-center gap-2 flex-col">
+                            <RiErrorWarningLine className="lg:h-14 lg:w-14 sm:h-10 sm:w-10 text-secundary-50"/>
+                            <span className=" lg:text-2xl sm:text-lg text-secundary-50 font-PT">No trailer found</span>
                         </div>
-                }
-                </div>
+                    } </div>
                 </section>
             </div> : <h1>error</h1>
         }

@@ -1,50 +1,76 @@
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-      .forNow {
-        background: rgb(8,15,40);
-        background: linear-gradient(90deg, rgba(8,15,40,1) 0%, rgba(13,19,43,1) 81%);
-      };
-      
-      .entrete{
-        animation:fadeInRightBig
-      }
-    
-      @keyframes fadeInRightBig {
-        from {
-          opacity: 0;
-          transform: translate3d(2000px, 0, 0);
-        }
-      
-        to {
-          opacity: 1;
-          transform: translate3d(0, 0, 0);
-        }
-      }
-  
-      .gridP{
-        grid-column: 1/2;
-        grid-row: 1/2;
-      
-        
-      }
-      .container{
-        display:grid;
-        gap: 1rem;
-        grid-auto-rows: 80%;
-        grid-template-columns:repeat(auto-fill,minmax(12rem,1fr))
-      }
-      
+@layer components {
+	.forNow {
+		background: rgb(8, 15, 40);
+		background: linear-gradient(
+			90deg,
+			rgba(8, 15, 40, 1) 0%,
+			rgba(13, 19, 43, 1) 81%
+		);
+	}
+
+	.entrete {
+		animation: fadeInRightBig;
+	}
+
+	@keyframes fadeInRightBig {
+		from {
+			opacity: 0;
+			transform: translate3d(2000px, 0, 0);
+		}
+
+		to {
+			opacity: 1;
+			transform: translate3d(0, 0, 0);
+		}
+	}
+
+	.gridP {
+		grid-column: 1/2;
+		grid-row: 1/2;
+	}
+	.container {
+		display: grid;
+		gap: 1rem;
+		grid-auto-rows: 80%;
+		grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+	}
+
+	.feather {
+		fill: hsl(213, 100%, 50%);
+		stroke: hsl(213, 100%, 50%);
+		animation: heartButton 1s;
+	}
+	@keyframes heartButton {
+		0% {
+			transform: scale(1);
+		}
+
+		25% {
+			transform: scale(1.3);
+		}
+
+		50% {
+			transform: scale(1);
+		}
+
+		75% {
+			transform: scale(1.3);
+		}
+
+		100% {
+			transform: scale(1);
+		}
+	}
 }
 
-.infinite-scroll-component__outerdiv{
-  display: flex;
-  justify-content: center;
+.infinite-scroll-component__outerdiv {
+	display: flex;
+	justify-content: center;
 }
-html{
-  scroll-behavior: smooth
-  }
+html {
+	scroll-behavior: smooth;
+}

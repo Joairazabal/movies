@@ -1,15 +1,16 @@
 import React from 'react'
 import firebaseApp from '../../fireBase'
-import {signOut, getAuth,} from 'firebase/auth'
+import {signOut, getAuth} from 'firebase/auth'
 import {useNavigate} from 'react-router-dom'
 
 export default function Logout() {
-    const navigate= useNavigate();
+    const navigate = useNavigate();
     const auth = getAuth(firebaseApp);
 
-    const handleLogOut=(e:React.MouseEvent < HTMLButtonElement >)=>{
+    const handleLogOut = (e : React.MouseEvent < HTMLButtonElement >) => {
         e.preventDefault();
         signOut(auth);
+        localStorage.clear()
         navigate('/')
     }
 
