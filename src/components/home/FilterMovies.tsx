@@ -13,8 +13,6 @@ interface Props {
 }
 
 export default function FilterMovies({movies, pages, setPage} : Props) {
-
-    console.log(movies)
     return (
         <div>
             <InfinitiScroll dataLength={

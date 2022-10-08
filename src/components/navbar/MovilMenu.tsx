@@ -23,24 +23,21 @@ export default function MovilMenu() {
         {
             name: 'Home',
             link: '/'
-        },
-        {
+        }, {
             name: 'Favorites',
             link: '/favorites'
-        },
-        {
+        }, {
             name: 'Movies',
             link: '/movies'
-        },
-        {
+        }, {
             name: 'Series',
             link: '/series'
         },
     ]
-    
+
 
     return (
-        <div className=' inline-block sm:block lg:hidden'>
+        <div className=' inline-block sm:block lg:hidden z-30'>
             <div className="w-11 h-11 mr-3 relative cursor-pointer flex lg:hidden sm:block sm:mt-[-6px] z-20"
                 onClick={
                     close == false ? handleOpen : handleClose
@@ -62,8 +59,8 @@ export default function MovilMenu() {
                 }`
             }>
                 <div className='flex flex-col mt-[10vh] gap-8 '>
-                {user?
-                    <div className=' flex items-center gap-3 mt-4 ml-4'>
+                    {
+                    user ? <div className=' flex items-center gap-3 mt-4 ml-4'>
                         <img src={
                                 user.photoURL
                             }
@@ -73,20 +70,33 @@ export default function MovilMenu() {
                             {
                             user.displayName
                         }</label>
-                    </div>:null
+                    </div> : null
                 }
 
                     <ul className='flex flex-col ml-5 text-2xl font-PT gap-4 items-start  '>
-                        {links?.map(el=>{
-                            return(
-                               <li><Link to={el.link}> <a className='active:text-secundary-50'>{el.name}</a></Link></li> 
+                        {
+                        links ?. map((el, index) => {
+                            return (
+                                <li key={index}>
+                                    <Link to={
+                                        el.link
+                                    }>
+                                        <a className='active:text-secundary-50'>
+                                            {
+                                            el.name
+                                        }</a>
+                                    </Link>
+                                </li>
                             )
-                        })}
-                    {user?
-                    <Logout/>:
-                    <Link to={'/login'}><span className='text-xl text-secundary'>Are you new?<strong className='text-2xl text-secundary-50'> Sign up</strong> </span></Link>
+                        })
                     }
-                    </ul>
+                        {
+                        user ? <Logout/>: <Link to={'/login'}>
+                            <span className='text-xl text-secundary'>Are you new?<strong className='text-2xl text-secundary-50'>
+                                    Sign up</strong>
+                            </span>
+                        </Link>
+                    } </ul>
                 </div>
             </div>
 

@@ -34,9 +34,10 @@ export default function Navbar(): JSX.Element {
                 <div className=" lg:block sm:hidden">
                     <ul className="flex gap-8 text-secundary font-Nunito text-2xl ">
                         {
-                        links ?. map(el => {
+                        links ?. map((el, index) => {
                             return (
-                                <li className="border-l-2 border-secundary-50 pl-2">
+                                <li className="border-l-2 border-secundary-50 pl-2"
+                                    key={index}>
                                     <Link to={
                                         el.link
                                     }>

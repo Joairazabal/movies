@@ -13,22 +13,19 @@ import Navbar from '../../components/navbar/NavBar'
 import Loading from '../loading/Loading'
 
 
-
 export default function Favorites() {
 
     const firestore = getFirestore(firebaseApp);
 
-    async function searchFavorites(idFav : string) { 
+    async function searchFavorites(idFav : string) {
         const favRef = doc(firestore, `usuarios/${idFav}`)
         // busco el usuario
         const consulta = await getDoc(favRef);
-        if (consulta.exists()) { 
-            // si existe
+        if (consulta.exists()) { // si existe
             const resolve = consulta.data();
             return resolve.favorites
-            //retorno los favoritos
-        } else {
-             // si no existe
+            // retorno los favoritos
+        } else { // si no existe
             await setDoc(favRef, {favorites: []})
         }
     }
@@ -37,13 +34,16 @@ export default function Favorites() {
 
     const [user, setUser] = useState(() => {
         const user = localStorage.getItem('user')
-        if(user){
-        const userParse:user=JSON.parse(user)
-        return userParse.email
-    }else return ''})
+        if (user) {
+            const userParse: user = JSON.parse(user)
+            return userParse.email
+        } else 
+            return ''
+        
+    })
 
     useEffect(() => {
-        async function fetchFavs(usuario:string) {
+        async function fetchFavs(usuario : string) {
             console.log(usuario)
             const favorites = await searchFavorites(usuario)
             const favoritesParse = JSON.stringify(favorites)
@@ -51,12 +51,14 @@ export default function Favorites() {
             setFavs(favorites)
         }
         fetchFavs(user)
-      
+
     }, [user])
 
 
+    if (!favs.length) 
+        return <Loading/>
 
-    if(!favs.length) return <Loading/>
+    
 
     return (
         <>
@@ -65,8 +67,8 @@ export default function Favorites() {
                 <div className='flex flex-col gap-12 mt-10'>
                     <h1 className=' font-Nunito text-4xl text-secundary-50'>Favorites</h1>
                     <div className='container bg-primary-100'>
-                       {
-                        favs? favs.map((el
+                        {
+                        favs ? favs.map((el
                         : topMovies, index
                         : number) => {
                             return (
@@ -84,8 +86,8 @@ export default function Favorites() {
                                         clase={'movie'}/>
                                 </div>
                             )
-                        }) :<h1>no tienes favoritos</h1>
-                    } </div> 
+                        }) : <h1>no tienes favoritos</h1>
+                    } </div>
                 </div>
             </div>
         </>
