@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import {GrFavorite} from 'react-icons/gr'
 import {getFirestore, getDoc, doc, updateDoc} from 'firebase/firestore'
-import firebaseApp from '../fireBase'
-import {movies, topMovies} from '../redux/types'
-import useUser from '../hooks/useUser'
+import firebaseApp from '../../fireBase'
+import {movies, topMovies} from '../../redux/types'
+import useUser from '../../hooks/useUser'
 import {Link} from 'react-router-dom'
 
 interface Props {
@@ -45,9 +45,9 @@ export default function AddFavorites({id, movie} : Props) {
         }
     }
 
-    const [respuesta, setRespuesta] = useState(false)
+    const [respuesta, setRespuesta] = useState<boolean>(false)
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<boolean>(false);
 
     const handleAddFav = (e : React.MouseEvent < HTMLButtonElement >) => {
         e.preventDefault();
@@ -72,18 +72,21 @@ export default function AddFavorites({id, movie} : Props) {
     useEffect(() => {
         function setFavs() {
             const favs = localStorage.getItem('favorites');
-            if (favs) {
-                const parseFavs = JSON.parse(favs)
-                const filterFavs: movies[] = parseFavs.filter((el : movies) => el.id === id)
+            if (favs ?. length) {
+                const parseFavs = JSON.parse(favs ? favs : '')
+                const filterFavs: movies[] = parseFavs? parseFavs.filter((el : movies) => el.id === id):
+                console.log('bucle')
                 if (filterFavs.length) {
                     setRespuesta(true)
                 } else {
                     setRespuesta(false)
                 }
-            }
+            }else return
+
         }
+
         setFavs()
-    }, [])
+    }, [idUser])
 
     return (
         <div className='absolute'>
@@ -104,8 +107,8 @@ export default function AddFavorites({id, movie} : Props) {
             <button onClick={
                     (e) => handleAddFav(e)
                 }
-                className="absolute  right-0 ">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke='hsl(213, 100%, 50%)' stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                className="absolute  right-0 lg:hover:scale-105 z-10 ">
+                <svg xmlns="http://www.w3.org/2000/svg" id='fav' width="24" height="24" viewBox="0 0 24 24" fill="none" stroke='hsl(213, 100%, 50%)' strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                     className={
                         respuesta ? 'feather mt-2' : ' hover:scale-110 duration-300 mt-2 text-secundary-50'
                 }>

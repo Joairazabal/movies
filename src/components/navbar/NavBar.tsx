@@ -10,9 +10,7 @@ import MovilMenu from "./MovilMenu";
 
 export default function Navbar(): JSX.Element {
 
-    const user: user | null = useUser();
-
-    console.log(user)
+    const userParse = useUser()
     const links = [
         {
             name: 'Home',
@@ -51,7 +49,7 @@ export default function Navbar(): JSX.Element {
                     }
                         <li className="border-l-2 border-secundary-50 pl-2">
                             <Link to={
-                                user ? '/favorites' : '/login'
+                                userParse ?. email ? '/favorites' : '/login'
                             }>Favorites</Link>
                         </li>
 
@@ -62,7 +60,7 @@ export default function Navbar(): JSX.Element {
             <div className="lg:mr-10 flex items-center lg:gap-8 sm:gap-4 ">
                 <div className="lg:flex lg:block sm:hidden">
                     {
-                    user.email.length ? <PopUser/>: <Link to='/login'>
+                    userParse ?. email.length ? <PopUser user={userParse}/> : <Link to='/login'>
                         <button className="text-secundary font-Nunito text-lg rounded-lg">Log in</button>
                     </Link>
                 } </div>

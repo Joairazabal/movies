@@ -9,7 +9,7 @@ import Login from './components/login/Login';
 import firebaseApp from './fireBase';
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
 import UserContext from './context/userContext';
-import Favorites from './favorites/Favorites';
+import Favorites from './components/favorites/Favorites';
 
 const auth = getAuth(firebaseApp);
 
@@ -21,7 +21,7 @@ function App() {
     onAuthStateChanged(auth, (userFirebase) => {
         if (userFirebase) { // codigo en caso de que hay una sesion iniciada
             setGlobalUser(userFirebase)
-            const user= JSON.stringify(userFirebase.email)
+            const user= JSON.stringify(userFirebase)
             localStorage.setItem('user', user)
         } else { // codigo en caso de no estar registrado
             setGlobalUser(null)

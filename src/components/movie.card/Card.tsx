@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import AddFavorites from '../../favorites/AddFavorites';
+import AddFavorites from '../favorites/AddFavorites';
 import notImage from './imageNotfound.png'
 
 interface Props {
@@ -30,9 +30,9 @@ export default function Card({poster_path, title, id, clase} : Props) {
                 <img src={
                         !poster_path ? notImage : `https://image.tmdb.org/t/p/w500/${poster_path}`
                     }
-
+                    loading= 'lazy'
                     alt={notImage}
-                    className='flex lg:h-[16rem] lg:w-[11rem] sm:h-[14rem]   lg:rounded-[10px] sm:rounded-lg gridP lg:hover:scale-105 lg:hover:duration-100 lg:hover:opacity-40'/>
+                    className='flex lg:h-[16rem] lg:w-[11rem] sm:h-[14rem]   lg:rounded-[10px] sm:rounded-lg gridP lg:hover:focus:rounded-[10px] lg:hover:duration-100 lg:hover:opacity-40'/>
                 <span>{}</span>
                 <h1 className='lg:text-xl sm:text-lg break-words font-Nunito text-secundary mt-2 sm:w-[10rem] text-center  '>
                     {title}</h1>

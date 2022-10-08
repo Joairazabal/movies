@@ -6,75 +6,67 @@ import {
     setDoc,
     updateDoc
 } from 'firebase/firestore'
-import firebaseApp from '../fireBase'
-import {movies, topMovies} from '../redux/types'
-import Card from '../components/movie.card/Card'
-import Navbar from '../components/navbar/NavBar'
+import firebaseApp from '../../fireBase'
+import {movies, topMovies, user} from '../../redux/types'
+import Card from '../../components/movie.card/Card'
+import Navbar from '../../components/navbar/NavBar'
+import Loading from '../loading/Loading'
 
-interface Props {
-    usuario: any
-}
+
 
 export default function Favorites() {
 
     const firestore = getFirestore(firebaseApp);
-    const [user, setUser] = useState('')
 
-    const usuario = () => {
-        const user = localStorage.getItem('user')
-        user ? setUser(JSON.parse(user)) : setUser('no existe user')
-    }
-
-    async function searchFavorites(idFav : any) { // referencia a los favoritos
+    async function searchFavorites(idFav : string) { 
         const favRef = doc(firestore, `usuarios/${idFav}`)
-        // busco el documento
+        // busco el usuario
         const consulta = await getDoc(favRef);
-        if (consulta.exists()) { // si existe
+        if (consulta.exists()) { 
+            // si existe
             const resolve = consulta.data();
             return resolve.favorites
-        } else { // si no existe
+            //retorno los favoritos
+        } else {
+             // si no existe
             await setDoc(favRef, {favorites: []})
-            getDoc(favRef)
-            const consulta = await getDoc(favRef);
-            const resolve = consulta.data();
-            return alert('no estas registrado')
         }
     }
 
+    const [favs, setFavs] = useState([])
 
-    const [favs, setFavs] = useState(() => {
-        const saved = localStorage.getItem("favorites");
-        if (saved === null) {
-            return []
-        } else {
-            const initialValue = JSON.parse(saved)
-            return initialValue
-        }
-    })
+    const [user, setUser] = useState(() => {
+        const user = localStorage.getItem('user')
+        if(user){
+        const userParse:user=JSON.parse(user)
+        return userParse.email
+    }else return ''})
 
-
-    const local = localStorage.getItem('favorites')
     useEffect(() => {
-        usuario()
-        async function fetchFavs(usuario : string) {
+        async function fetchFavs(usuario:string) {
+            console.log(usuario)
             const favorites = await searchFavorites(usuario)
             const favoritesParse = JSON.stringify(favorites)
             localStorage.setItem('favorites', favoritesParse)
             setFavs(favorites)
         }
         fetchFavs(user)
-    }, [user, local])
+      
+    }, [user])
 
+
+
+    if(!favs.length) return <Loading/>
 
     return (
         <>
             <Navbar/>
-            <div className='bg-primary-100 flex justify-center h-screen'>
+            <div className='bg-primary-100 flex justify-center'>
                 <div className='flex flex-col gap-12 mt-10'>
                     <h1 className=' font-Nunito text-4xl text-secundary-50'>Favorites</h1>
-                    <div className='container'>
-                        {
-                        favs ? favs.map((el
+                    <div className='container bg-primary-100'>
+                       {
+                        favs? favs.map((el
                         : topMovies, index
                         : number) => {
                             return (
@@ -92,8 +84,8 @@ export default function Favorites() {
                                         clase={'movie'}/>
                                 </div>
                             )
-                        }) : <span>hola</span>
-                    } </div>
+                        }) :<h1>no tienes favoritos</h1>
+                    } </div> 
                 </div>
             </div>
         </>
