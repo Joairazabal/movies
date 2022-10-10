@@ -41,6 +41,10 @@ function App() {
                     element={<Movies/>}/>
                 <Route path="/series"
                     element={<Series/>}/>
+                <Route path="/movies/:genre"
+                    element={<Movies/>}/>
+                <Route path="/series/:genre"
+                    element={<Series/>}/>
                 <Route path="/login"
                     element={<Login 
                     usuario={globalUser}/>

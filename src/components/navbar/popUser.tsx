@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
 import useUser from '../../hooks/useUser'
-import { user } from '../../redux/types';
+import {user} from '../../redux/types';
 import Logout from '../login/Logout';
+import noUser from './noUser.png'
 
-export interface Props{
+export interface Props {
     user: user
 }
 
-export default function PopUser({user}:Props) {
+export default function PopUser({user} : Props) {
 
     const [open, setOpen] = useState(false);
 
@@ -20,14 +21,15 @@ export default function PopUser({user}:Props) {
     return (
         <div>
             <button onClick={
-                (e) => handleOpen(e)
-            }><img src={
-                        user ?. photoURL
+                    (e) => handleOpen(e)
+                }
+                className='flex h-full items-center'><img src={
+                        user.photoURL
                     }
                     alt={
                         user.displayName
                     }
-                    className='h-10 rounded-full active:border active:border-secundary-50 alt font-Nunito text-secundary-50 items-center'/></button>
+                    className='h-10 rounded-full active:border active:border-secundary-50 alt font-Nunito text-secundary-50 '/></button>
             <div className={
                 open ? "visible bg-secundary-200 absolute z-20 w-[15rem] mt-3 h-[10rem] rounded-lg   " : 'hidden '
             }>

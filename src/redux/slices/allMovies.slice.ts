@@ -17,7 +17,7 @@ const movieSlice = createSlice({
 			state.items = [...state.items, ...action.payload];
 		},
 		setFilterMovies: (state, action) => {
-			state.items = [...state.items, ...action.payload];
+			state.items =[ ...action.payload, ...state.items]
 		},
 		suggestionsMovie: (state, action) => {
 			state.items = action.payload;
@@ -38,9 +38,14 @@ export const allMovies = (page: number): AppThunk => {
 
 export const filterMovies = (genreId: string, page: number): AppThunk => {
 	return async (dispatch) => {
+		try{
 		const response = await urlAllMovies(page, genreId);
+		console.log(response);
 		const filters: movies[] = response.data.results;
 		dispatch(setFilterMovies(filters));
+		}catch(error){
+			console.error(error)
+		}
 	};
 };
 

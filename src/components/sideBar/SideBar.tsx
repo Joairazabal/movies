@@ -27,51 +27,39 @@ export default function SideBar({clase} : Props) {
     return (
         <aside className='lg:w-[30%] bg-primary-300 flex flex-col items-center sm:w-[60%]'>
 
-             {
-                clase === 'all' ? <div className='gap-4'>
-                    <li>
-                        <div className='mt-8 w-[90%] text-left'>
-                            <h1 className='font-Nunito text-secundary lg:text-2xl sm:text-sm md:text-xl'>Genres Movies</h1>
+            {
+            clase === 'all' ? <div className='gap-4'>
+                <li>
+                    <div className='mt-8 w-[90%] text-left'>
+                        <h1 className='font-Nunito text-secundary lg:text-2xl sm:text-sm md:text-xl'>Genres Movies</h1>
                         <ListGenres genres={
-                            genres.genresMovies
-                        }
-                        clase={
-                            'movie'
-                        }
-                        />
-                        </div>
-                    </li>
-                    <li>
+                                genres.genresMovies
+                            }
+                            clase={'movie'}/>
+                    </div>
+                </li>
+                <li>
                     <div className='mt-8 w-[80%] text-left'>
-                            <h1 className='font-Nunito text-secundary lg:text-2xl sm:text-sm md:text-xl'>Genres Tvs</h1>
+                        <h1 className='font-Nunito text-secundary lg:text-2xl sm:text-sm md:text-xl'>Genres Tvs</h1>
                         <ListGenres genres={
-                            genres.genresTv
-                        }
-                        clase={
-                            'serie'
-                        }/>
-                        </div>
-                    </li>
-                </div> : clase === 'movie' ?  <div className='mt-8 w-[90%] text-left'>
+                                genres.genresTv
+                            }
+                            clase={'serie'}/>
+                    </div>
+                </li>
+            </div> : clase === 'movie' ? <div className='mt-8 w-[90%] text-left'>
+                <h1 className='font-Nunito text-secundary lg:text-2xl sm:text-sm md:text-xl'>Genres Movies</h1>
+                <ListGenres genres={
+                        genres.genresMovies
+                    }
+                    clase={'movie'}/>
+            </div> : <div className='mt-8 w-[90%] text-left'>
                 <h1 className='font-Nunito text-secundary lg:text-2xl sm:text-sm md:text-xl'>Genres Tvs</h1>
                 <ListGenres genres={
-                    genres.genresMovies
-                }
-                clase={
-                    'movie'
-                }/>
-                </div> : 
-                <div className='mt-8 w-[90%] text-left'>
-                <h1 className='font-Nunito text-secundary lg:text-2xl sm:text-sm md:text-xl'>Genres Tvs</h1>
-                <ListGenres genres={
-                    genres.genresTv
-                }
-                clase={
-                    'serie'
-                }/>
-                </div>
-            } 
-
-        </aside>
+                        genres.genresTv
+                    }
+                    clase={'serie'}/>
+            </div>
+        } </aside>
     )
 }

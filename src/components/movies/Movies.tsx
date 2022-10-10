@@ -9,27 +9,29 @@ import Card from '../movie.card/Card'
 import Loading from '../loading/Loading'
 import {searchMovies} from '../../redux/slices/searchMovies.slice'
 import ContainerMovies from '../search/ContainerMovies'
-import FilterMovies from '../home/FilterMovies'
+
 
 export default function Movies() {
     const dispatch = useAppDispatch();
+    const params = useLocation();
+
     const totalMovies = useAppSelector(state => state.allMovies.items);
     const movies = useAppSelector(state => state.searchMovies.items)
-    const pages = Math.floor(Math.random() * 1000);
-    const params = useLocation();
-    let query = params.search.substring(8).toString();
+
+    let genre = params.pathname.substring(8)
     const [page, setPage] = useState(1)
-    let filtro = params.search.substring(7)
+    
 
+console.log(totalMovies)
     useEffect(() => {
-        if (query === '') {
+        if (genre === '') {
             dispatch(allMovies(page))
-        } else if (params.search.includes('genre')) {
-            dispatch(filterMovies(filtro, page))
-        }else dispatch(searchMovies(query))
-    }, [page, query])
+        } else if (genre) {
+            dispatch(filterMovies(genre, page))
+        } else 
+            dispatch(searchMovies(genre))
+    }, [genre])
 
-    console.log(page)
 
     return (
         <div className=' bg-primary-100 h-screen'>
@@ -49,7 +51,7 @@ export default function Movies() {
                                 () => setPage(prevPage => prevPage + 1)
                             }
                             loader={<Loading/>}
-                            className='lg:grid lg:grid-cols-5 lg:gap-8  lg:w-[85%] sm:grid sm:grid-cols-1 sm:w-[100%] sm:gap-4'>
+                            className='lg:grid lg:grid-cols-5 lg:gap-8  sm:grid sm:grid-cols-1 sm:w-[100%] sm:gap-4'>
                             {
                             totalMovies ?. map((el, index) => {
                                 return (

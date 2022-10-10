@@ -12,6 +12,8 @@ interface Props {
 
 }
 
+// los botones de la sidebar deber redireccionar a /clase(movie or serie)/categoria
+
 export default function FilterMovies({movies, pages, setPage} : Props) {
     return (
         <div>

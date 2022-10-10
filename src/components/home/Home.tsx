@@ -32,25 +32,22 @@ export function Home() {
     const loading = useAppSelector(state => state.movies.loading)
 
 
-    const [page, setPage] = useState(1)
-
     useEffect(() => {
-        if (params.pathname === '/' && params.search.includes('movie')) {
-            dispatch(filterMovies(filtro, page))
-        } else if (query.length > 3) {
+        if (query.length > 3) {
             dispatch(searchMovies(query))
-        } else if (params.pathname === '/' && params.search.includes('serie')) {
-            dispatch(filterTvSeries(filtro, page))
-        } else if (params.pathname === '/' && params.search === '' || query === '') {
-            dispatch(populartyMovies());
-            dispatch(topMovies())
-            dispatch(getEstrenos())
-            setTimeout(() => {
-                dispatch(setLoadingHome())
+        } else {
+            if (params.pathname === '/' && params.search === '' || query === '') {
+                dispatch(populartyMovies());
+                dispatch(topMovies());
+                dispatch(getEstrenos());
+                setTimeout(() => {
+                    dispatch(setLoadingHome())
 
-            }, 500)
+                }, 600)
+
+            }
         }
-    }, [params.search, filtro, page]);
+    }, [params.search, filtro]);
 
     if (loading) 
         return <Loading/>
@@ -66,15 +63,9 @@ export function Home() {
                 <SideBar clase='all'/>
                 <main className="flex flex-col items-center w-full  sm:w-[100%]">
                     {
-                    params.search.includes('movie') ? (
-                        <FilterMovies movies={filters}
-                            pages={page}
-                            setPage={setPage}/>
-                    ) : query.length > 3 ? (
+                    query.length > 3 ? (
                         <ContainerMovies movie={search}/>
-                    ) : params.search.includes('serie') ? <FilterMovies movies={filtersTv}
-                            pages={page}
-                            setPage={setPage}/> : (
+                    ) : (
                         <div className="flex flex-col items-center gap-4 sm:w-[70%] lg:w-[90%] ml-4 ">
                             <MovieCard movie={movies}
                                 title={'popular'}
