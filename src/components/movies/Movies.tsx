@@ -25,7 +25,7 @@ export default function Movies() {
     useEffect(() => {
         if (query.length > 3) {
             dispatch(searchMovies(query))
-        } else if (genre !== 'all') {
+        } else if (genre !== 'all' && genre) {
             dispatch(filterMovies(genre, page))
         } else 
             dispatch(setClearSearch())

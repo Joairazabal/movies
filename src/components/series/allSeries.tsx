@@ -24,7 +24,7 @@ export default function Series() {
     useEffect(() => {
         if (filtro.length > 3) {
             dispatch(searchMovies(filtro))
-        } else if (genre !== 'all') {
+        } else if (genre !== 'all' && genre) {
             dispatch(filterTvSeries(genre, page))
         } else {
             dispatch(setClearSearch())
