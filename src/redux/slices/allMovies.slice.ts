@@ -17,7 +17,7 @@ const movieSlice = createSlice({
 			state.items = [...state.items, ...action.payload];
 		},
 		setFilterMovies: (state, action) => {
-			state.items =[ ...action.payload, ...state.items]
+			state.items =action.payload
 		},
 		suggestionsMovie: (state, action) => {
 			state.items = action.payload;

@@ -63,16 +63,16 @@ export default function Favorites() {
     return (
         <>
             <Navbar/>
-            <div className='bg-primary-100 flex justify-center'>
-                <div className='flex flex-col gap-12 mt-10'>
+            <div className='bg-primary-100 w-full flex justify-center h-screen'>
+                <div className='flex flex-col gap-12 mt-10  w-full'>
                     <h1 className=' font-Nunito text-4xl text-secundary-50'>Favorites</h1>
-                    <div className='container bg-primary-100'>
+                    <div className='container w-full bg-primary-100'>
                         {
                         favs ? favs.map((el
                         : topMovies, index
                         : number) => {
                             return (
-                                <div className=''
+                                <div className='w-full'
                                     key={index}>
                                     <Card poster_path={
                                             el.poster_path

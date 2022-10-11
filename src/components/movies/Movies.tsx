@@ -7,30 +7,30 @@ import NavBar from '../navbar/NavBar'
 import SideBar from '../sideBar/SideBar'
 import Card from '../movie.card/Card'
 import Loading from '../loading/Loading'
-import {searchMovies} from '../../redux/slices/searchMovies.slice'
+import {searchMovies, setClearSearch} from '../../redux/slices/searchMovies.slice'
 import ContainerMovies from '../search/ContainerMovies'
 
 
 export default function Movies() {
     const dispatch = useAppDispatch();
     const params = useLocation();
+    let query = params.search.substring(8).toString();
 
     const totalMovies = useAppSelector(state => state.allMovies.items);
     const movies = useAppSelector(state => state.searchMovies.items)
 
     let genre = params.pathname.substring(8)
     const [page, setPage] = useState(1)
-    
 
-console.log(totalMovies)
     useEffect(() => {
-        if (genre === '') {
-            dispatch(allMovies(page))
-        } else if (genre) {
+        if (query.length > 3) {
+            dispatch(searchMovies(query))
+        } else if (genre !== 'all') {
             dispatch(filterMovies(genre, page))
         } else 
-            dispatch(searchMovies(genre))
-    }, [genre])
+            dispatch(setClearSearch())
+         dispatch(allMovies(page))
+    }, [genre, page, query])
 
 
     return (
@@ -42,7 +42,7 @@ console.log(totalMovies)
                     {
                     movies.length ? (
                         <ContainerMovies movie={movies}/>
-                    ) : (
+                    ) : ! genre.length || genre === 'all' ? (
                         <InfinitiScroll dataLength={
                                 totalMovies.length
                             }
@@ -69,6 +69,10 @@ console.log(totalMovies)
                                 )
                             })
                         } </InfinitiScroll>
+                    ) : query.length > 3 ? (
+                        <ContainerMovies movie={movies}/>
+                    ) : (
+                        <ContainerMovies movie={totalMovies}/>
                     )
                 } </div>
             </div>

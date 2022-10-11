@@ -27,8 +27,6 @@ export function Home() {
     const top: resultTop['results'] = useAppSelector(state => state.topMovies.items.results);
     const seriesPopular: seriesPopular[] = useAppSelector(state => state.estrenos.items);
     const search: movies[] = useAppSelector(state => state.searchMovies.items);
-    const filters: movies[] = useAppSelector(state => state.allMovies.items)
-    const filtersTv: seriesPopular[] = useAppSelector(state => state.allSeries.items)
     const loading = useAppSelector(state => state.movies.loading)
 
 
