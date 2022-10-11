@@ -60,7 +60,7 @@ export default function Login({usuario} : any) {
         <>
             <Navbar/>
             <div className=' forNow h-[90vh] flex justify-center items-center '>
-                <form action="" className='border  border-secundary-50 rounded-lg  flex flex-col justify-around lg:h-[50%] lg:w-[30%] sm:w-[80%] sm:h-[50%]'
+                <form action="" className='border  border-secundary-50 rounded-lg  flex flex-col justify-around lg:h-[55%] lg:w-[30%] sm:w-[80%] sm:h-[50%]'
                     onSubmit={
                         event => submitForm(event)
                 }>
