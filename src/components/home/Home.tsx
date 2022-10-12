@@ -50,9 +50,7 @@ export function Home() {
     if (loading) 
         return <Loading/>
 
-
-    
-
+console.log(process.env.API_KEY_FB)
 
     return (
         <section>

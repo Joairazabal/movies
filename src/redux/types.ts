@@ -7,7 +7,7 @@ export interface movies {
 	media_type: string;
 	backdrop_path: string | null;
 	genre_ids: number[] | null;
-	clase: string | null;
+	clase: string | null | undefined;
 }
 
 export interface moviesState {
@@ -85,7 +85,7 @@ export interface seriesPopular {
 	poster_path: string | null;
 	title: null;
 	profile_path: string | null;
-	media_type: string;
+	media_type: string | undefined;
 }
 
 export interface typePopular {
@@ -100,7 +100,7 @@ export interface person {
 	name: string;
 	poster_path: null;
 	title: null;
-	media_type: string;
+	media_type: string | undefined;
 }
 export interface back_drop {
 	backdrop_path: string | null;

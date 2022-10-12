@@ -3,10 +3,11 @@ import {useAppSelector, useAppDispatch} from '../../hooks/redux';
 import {video} from '../../api/getMovies';
 import {useParams} from 'react-router-dom';
 import {setClearTv, getDetailTv, getActorsTv,} from '../../redux/slices/detailTvs.slice';
-import {getTrailerTv} from '../../redux/slices/getTrailerTv.slice';
+import {getTrailerTv, setClearState} from '../../redux/slices/getTrailerTv.slice';
 import NavBar from "../navbar/NavBar";
 import Sugerencias from '../DetailMovie/Sugerencias';
 import Loading from '../loading/Loading';
+import {RiErrorWarningLine} from 'react-icons/ri'
 
 export default function DetailTv() {
 
@@ -17,20 +18,19 @@ export default function DetailTv() {
     let params = useParams();
     let id = params.id;
 
-    const estreno = detailsTv.release_date ?. slice(0, 4)
-
+console.log(trailersTv)
     useEffect(() => {
         dispatch(setClearTv())
+        dispatch(setClearState())
         dispatch(getTrailerTv(id));
         dispatch(getDetailTv(id));
         dispatch(getActorsTv(id))
-        dispatch(setClearTv())
         setLoading(false)
-    }, [dispatch]);
+    }, [dispatch, params]);
 
-    if(loading) return <Loading/>
+    if(!detailsTv.backdrop_path) return <Loading/>
 
-    console.log(detailsTv)
+    console.log(detailsTv.overview)
     return (
         <div className=" bg-primary-100 w-full">
             <NavBar/> {
@@ -67,7 +67,7 @@ export default function DetailTv() {
                             }
                             alt=""
                             className=" lg:h-72 lg:w-52 sm:h-44 sm:w-32 rounded-lg mb-2"/>
-                        <h1 className=" lg:text-xl font-PT text-secundary lg:break-words sm:text-lg">
+                        <h1 className=" lg:text-xl font-PT text-secundary lg:break-words sm:text-lg lg:text-start">
                             {
                             detailsTv.name
                         }</h1>
@@ -120,14 +120,18 @@ export default function DetailTv() {
                         <h3 className="text-secundary-50 text-2xl font-Nunito sm:block lg:hidden">Overview</h3>
                             <p className="break-words text-secundary font-Nunito lg:text-xl leading-[2rem] lg:w-[70%] sm:w-[85%] lg:tracking-wide sm:text-sm font-semibold">
                                 {
-                                detailsTv.overview
+                                detailsTv.overview? detailsTv.overview:(
+                                <div className='flex gap-4 text-secundary-50 font-PT'>
+                                    <RiErrorWarningLine/>
+                                    <h3 className='text-2xl'>Overview not found</h3>
+                                </div>)
                             }</p>
                         </div>
                     </div>
                 </div>
                 <section className=" flex flex-col justify-center  items-center ">
                     <div className="lg:w-[70%] sm:w-[85%] lg:my-28 bg-secundary-200 rounded-lg lg:py-10   ">
-                    {trailersTv ?. map(el => {
+                    {trailersTv ? trailersTv.map(el => {
                         return (
                             <iframe src={
                                     `${video}${
@@ -137,7 +141,10 @@ export default function DetailTv() {
                                 allowFullScreen
                                 className=" lg:h-[30rem] lg:w-full sm:h-64 sm:w-full md:h-[30rem] sm:my-8"/>
                         )
-                    })
+                    }):<div className="flex justify-center items-center gap-2 flex-col">
+                    <RiErrorWarningLine className="lg:h-14 lg:w-14 sm:h-10 sm:w-10 text-secundary-50"/>
+                    <span className=" lg:text-2xl sm:text-lg text-secundary-50 font-PT">No trailer found</span>
+                </div>
                 }
                 </div>
                 </section>

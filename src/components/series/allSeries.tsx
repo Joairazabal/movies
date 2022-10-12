@@ -70,7 +70,7 @@ export default function Series() {
                             })
                         } </InfinitiScroll>
                     ) : (
-                        <ContainerMovies movie={totalSeries}/>
+                        <ContainerMovies movie={totalSeries} classe={'tv'}/>
                     )
                 } </div>
             </div>

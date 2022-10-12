@@ -1,10 +1,16 @@
 import React from 'react'
+import { Waveform } from '@uiball/loaders'
+
 
 export default function Loading() {
   return (
     <div className=' bg-primary-100 h-screen w-full flex justify-center items-center '>
-      <div className='ring'></div>
-      <h1 className=' text-secundary-50 text-2xl font-PT'>Loading..</h1>
+      <Waveform 
+        size={80}
+        lineWeight={5}
+        speed={1} 
+        color="#007aff" 
+        />
     </div>
   )
 }

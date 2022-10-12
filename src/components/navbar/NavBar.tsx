@@ -36,7 +36,7 @@ export default function Navbar(): JSX.Element {
                         {
                         links ?. map((el, index) => {
                             return (
-                                <li className="border-l-2 border-secundary-50 pl-2"
+                                <li className="lg:buttom"
                                     key={index}>
                                     <Link to={
                                         el.link
@@ -48,7 +48,7 @@ export default function Navbar(): JSX.Element {
                             )
                         })
                     }
-                        <li className="border-l-2 border-secundary-50 pl-2">
+                        <li className=" lg:buttom">
                             <Link to={
                                 userParse ?. email ? '/favorites' : '/login'
                             }>Favorites</Link>
@@ -62,7 +62,7 @@ export default function Navbar(): JSX.Element {
                 <div className="lg:flex lg:block sm:hidden">
                     {
                     userParse ?. email.length ? <PopUser user={userParse}/> : <Link to='/login'>
-                        <button className="text-secundary font-Nunito text-lg rounded-lg">Log in</button>
+                        <button className="text-secundary font-Nunito text-lg rounded-lg hover:scale-110 hover:duration-200">Log in</button>
                     </Link>
                 } </div>
                 <Search/>

@@ -14,7 +14,8 @@ export default function ListGenres({genres, clase} : Props) {
 
     return (
         <>
-            <div className='flex items-center text-secundary-100 text-opacity-70 lg:text-2xl sm:text-[1,120rem] gap-4 font-PT font-semibold lg:hover:transition lg:hover:duration-700 lg:hover:text-secundary-50  lg:hover:delay-150 lg:hover:rounded-lg  lg:hover:bg-secundary-200 md:text-2xl lg:my-1 lg:p-2 sm:my-[8px] text-start break-words gap-4'>
+            <div className='flex items-center text-secundary-100 text-opacity-70 lg:text-2xl sm:text-[1,120rem] font-PT font-semibold lg:hover:transition lg:hover:duration-700 lg:hover:text-secundary-50  lg:hover:delay-150
+               lg:hover:bg-secundary-200 md:text-2xl lg:my-1 lg:p-2 sm:my-[8px] text-start break-words gap-4'>
                 <MdLabelOutline/>
                 <Link to={
                     clase === 'movie' ? `/movies/${

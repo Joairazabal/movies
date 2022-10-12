@@ -39,13 +39,13 @@ export default function DetailMovie() {
 
     const estreno = details.release_date ?. slice(0, 4)
 
-    if (loading) 
+    if (!details.backdrop_path) 
         return <Loading/>
 
 
     
 
-
+console.log(trailers)
     return (
         <div className=" bg-primary-100 w-full">
             <NavBar/> {
@@ -82,7 +82,7 @@ export default function DetailMovie() {
                             }
                             alt=""
                             className=" lg:h-72 lg:w-52 sm:h-44 sm:w-32 rounded-lg mb-2"/>
-                        <h1 className=" lg:text-2xl font-PT text-secundary lg:break-words sm:text-lg sm:mb-4 sm:-mt-2 lg:mb-0 sm:w-32 sm:text-center">
+                        <h1 className=" lg:text-2xl  font-PT text-secundary lg:break-words sm:text-lg sm:mb-4 sm:-mt-2 lg:mb-0 ">
                             {
                             details.title
                         }</h1>
@@ -117,8 +117,12 @@ export default function DetailMovie() {
                         <div className="flex lg:justify-start sm:flex sm:justify-end sm:pt-10 sm:flex-col sm:gap-4 md:mt-0 ">
                             <h3 className="text-secundary-50 text-2xl font-Nunito sm:block lg:hidden">Overview</h3>
                             <p className="break-words text-secundary font-Nunito lg:text-xl leading-[2rem] lg:w-[70%] sm:w-[85%] lg:tracking-wide sm:text-sm font-semibold ">
-                                {
-                                details.overview
+                            {
+                                details.overview? details.overview:(
+                                <div className='flex gap-4 text-secundary-50 font-PT items-center'>
+                                    <RiErrorWarningLine/>
+                                    <h3 className='text-2xl'>Overview not found</h3>
+                                </div>)
                             }</p>
                         </div>
                     </div>
@@ -126,7 +130,7 @@ export default function DetailMovie() {
                 <section className=" flex flex-col justify-center  items-center ">
                     <div className="lg:w-[70%] sm:w-[85%] lg:my-28 bg-secundary-200 rounded-lg lg:py-10   ">
                         {
-                        trailers ? trailers.map(el => {
+                        trailers.length? trailers.map(el => {
                             return (
                                 <iframe src={
                                         `${video}${

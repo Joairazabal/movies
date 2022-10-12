@@ -3,6 +3,30 @@
 @tailwind utilities;
 
 @layer components {
+	.buttom{
+		@apply 
+		inline-block
+		relative
+		cursor-pointer
+		transition-all
+		duration-500
+		before:content-['']
+		before:absolute
+		before:-bottom-2
+		before:left-0
+		before:w-0
+		before:h-1
+		before:rounded-full
+		before:opacity-0
+		before:transition-all
+		before:duration-500
+		before:bg-gradient-to-r
+		before:from-secundary-50
+		before:via-secundary-50
+		before:to-primary-400
+		hover:before:w-full
+		hover:before:opacity-100
+	}
 	.forNow {
 		background: rgb(8, 15, 40);
 		background: linear-gradient(

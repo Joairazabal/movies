@@ -72,7 +72,7 @@ export default function Movies() {
                     ) : query.length > 3 ? (
                         <ContainerMovies movie={movies}/>
                     ) : (
-                        <ContainerMovies movie={totalMovies}/>
+                        <ContainerMovies movie={totalMovies} classe={'movie'}/>
                     )
                 } </div>
             </div>
