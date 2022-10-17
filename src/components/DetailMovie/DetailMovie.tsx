@@ -1,7 +1,7 @@
 import React from "react";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {useParams} from "react-router-dom";
-import {getActors, getDetail, setClear} from "../../redux/slices/detailMovie.slice";
+import {getActors, getDetail, setClear, getProviderMovie} from "../../redux/slices/detailMovie.slice";
 import {useEffect} from "react";
 import NavBar from "../navbar/NavBar";
 import {video} from "../../api/getMovies";
@@ -10,6 +10,7 @@ import {setClearState} from "../../redux/slices/getTrailerTv.slice";
 import Sugerencias from './Sugerencias'
 import Loading from "../loading/Loading";
 import {RiErrorWarningLine} from 'react-icons/ri'
+import {useTranslation} from 'react-i18next'
 
 export default function DetailMovie() {
     const dispatch = useAppDispatch();
@@ -21,12 +22,12 @@ export default function DetailMovie() {
         dispatch(setClearState())
         dispatch(getDetail(id));
         dispatch(getTrailer(id));
-        dispatch(getActors(id))
+        dispatch(getActors(id));
+        dispatch(getProviderMovie(id, 'movie'))
     }, [dispatch, params]);
 
     const details = useAppSelector(state => state.detail.items);
     const trailers = useAppSelector(state => state.trailer.items);
-    const loading = useAppSelector(state => state.detail.loading)
 
     const runtime: number = details.runtime ? details.runtime / 60 : 0
     const time = runtime.toFixed(2)
@@ -39,13 +40,15 @@ export default function DetailMovie() {
 
     const estreno = details.release_date ?. slice(0, 4)
 
-    if (!details.backdrop_path) 
+    const {t}= useTranslation();
+
+    if (! details.backdrop_path) 
         return <Loading/>
 
 
     
 
-console.log(trailers)
+
     return (
         <div className=" bg-primary-100 w-full">
             <NavBar/> {
@@ -92,7 +95,7 @@ console.log(trailers)
                         }
                             - {estreno}</h3>
                         <li className="flex items-center gap-2">
-                            <strong className="font-PT lg:text-lg sm:text-xs text-secundary-50 ">Genres:</strong>
+                            <strong className="font-PT lg:text-lg sm:text-xs text-secundary-50 ">{t('details.genres')}:</strong>
                             {
                             details.genres ?. map(el => {
                                 return <h3 key={
@@ -107,7 +110,7 @@ console.log(trailers)
                             })
                         } </li>
                         <div className="flex items-start gap-2 lg:mb-14 ">
-                            <strong className="font-PT lg:text-lg sm:text-xs text-secundary-50 ">Actors:
+                            <strong className="font-PT lg:text-lg sm:text-xs text-secundary-50 ">{t('details.actors')}:
                             </strong>
                             <p className='text-secundary font-Nunito sm:text-xs lg:text-lg flex'>
                                 {
@@ -115,22 +118,45 @@ console.log(trailers)
                             }</p>
                         </div>
                         <div className="flex lg:justify-start sm:flex sm:justify-end sm:pt-10 sm:flex-col sm:gap-4 md:mt-0 ">
-                            <h3 className="text-secundary-50 text-2xl font-Nunito sm:block lg:hidden">Overview</h3>
+                            <h3 className="text-secundary-50 text-2xl font-Nunito sm:block lg:hidden">{t('details.overview')}</h3>
                             <p className="break-words text-secundary font-Nunito lg:text-xl leading-[2rem] lg:w-[70%] sm:w-[85%] lg:tracking-wide sm:text-sm font-semibold ">
-                            {
-                                details.overview? details.overview:(
-                                <div className='flex gap-4 text-secundary-50 font-PT items-center'>
-                                    <RiErrorWarningLine/>
-                                    <h3 className='text-2xl'>Overview not found</h3>
-                                </div>)
+                                {
+                                details.overview ? details.overview : (
+                                    <div className='flex gap-4 text-secundary-50 font-PT items-center'>
+                                        <RiErrorWarningLine/>
+                                        <h3 className='text-2xl'>Overview not found</h3>
+                                    </div>
+                                )
                             }</p>
                         </div>
-                    </div>
+                        {
+                        details.providers ? <div className='flex flex-col gap-2'>
+                            <div>
+                                <h3 className='text-secundary-50 text-2xl font-Nunito'>Providers</h3>
+                            </div>
+                            <div className='flex gap-4'>
+                                {
+                                details.providers ?. map(el => {
+                                    return (
+
+                                        <img src={
+                                                `https://image.tmdb.org/t/p/w500/${
+                                                    el.logo_path
+                                                }`
+                                            }
+                                            alt=""
+                                            className='sm:h-[25%] sm:w-[25%] lg:h-14 md:h-14 md:w-14 lg:w-14 rounded-lg lg:hover:scale-110 lg:hover:duration-500 lg:hover:transition '/>
+
+                                    )
+                                })
+                            } </div>
+                        </div> : null
+                    } </div>
                 </div>
                 <section className=" flex flex-col justify-center  items-center ">
                     <div className="lg:w-[70%] sm:w-[85%] lg:my-28 bg-secundary-200 rounded-lg lg:py-10   ">
                         {
-                        trailers.length? trailers.map(el => {
+                        trailers.length ? trailers.map(el => {
                             return (
                                 <iframe src={
                                         `${video}${

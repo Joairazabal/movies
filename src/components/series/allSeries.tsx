@@ -11,6 +11,7 @@ import {searchMovies} from '../../redux/slices/searchMovies.slice'
 import ContainerMovies from '../search/ContainerMovies'
 import {setClearSearch} from '../../redux/slices/searchMovies.slice'
 
+
 export default function Series() {
     const dispatch = useAppDispatch();
     const totalSeries = useAppSelector(state => state.allSeries.items);
@@ -32,7 +33,6 @@ export default function Series() {
         }
     }, [page, filtro, genre])
 
-    console.log(page)
 
     return (
         <div className=' bg-primary-100 h-screen'>
@@ -48,10 +48,12 @@ export default function Series() {
                                 totalSeries.length
                             }
                             hasMore={true}
-                            next={() => setPage(prevPage => prevPage + 1) }
-                            
+                            next={
+                                () => setPage(prevPage => prevPage + 1)
+                            }
+
                             loader={<Loading/>}
-                            className='lg:grid lg:grid-cols-5 lg:gap-8  lg:w-[85%] sm:grid sm:grid-cols-1 sm:w-[100%] sm:gap-4'>
+                            className='lg:grid lg:grid-cols-5 lg:gap-8  lg:w-[85%] sm:grid sm:grid-cols-1 md:grid-cols-3 sm:w-[100%] sm:gap-4'>
                             {
                             totalSeries ?. map((el, index) => {
                                 return (
@@ -70,7 +72,8 @@ export default function Series() {
                             })
                         } </InfinitiScroll>
                     ) : (
-                        <ContainerMovies movie={totalSeries} classe={'tv'}/>
+                        <ContainerMovies movie={totalSeries}
+                            classe={'tv'}/>
                     )
                 } </div>
             </div>

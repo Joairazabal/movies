@@ -4,13 +4,14 @@ import store from "./redux/store";
 import App from "./App";
 import './index.css'
 import {BrowserRouter} from 'react-router-dom';
+import "./i18next";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
-console.log(process.env.API_KEY_FB)
+
 root.render (
     <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter> 
             <App/>
         </BrowserRouter>
     </Provider>

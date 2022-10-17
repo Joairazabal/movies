@@ -11,6 +11,7 @@ import detailTvReducer from './slices/detailTvs.slice'
 import allMoviesReducer from './slices/allMovies.slice'
 import allSeriesReducer from './slices/allSeries.slice'
 
+
 const store = configureStore({
   reducer: {
     movies: moviesReducer,
@@ -24,6 +25,7 @@ const store = configureStore({
     detailTv: detailTvReducer,
     allMovies: allMoviesReducer,
     allSeries: allSeriesReducer,
+
   },
 });
 

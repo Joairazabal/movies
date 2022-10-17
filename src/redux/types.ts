@@ -1,3 +1,5 @@
+
+
 export interface movies {
 	poster_path: string | null;
 	id: number | null | string;
@@ -44,6 +46,7 @@ export interface detail {
 	backdrop_path: string | null;
 	actors: string[] | null;
 	name: string | null;
+	providers: providers[] | null;
 }
 
 export interface typeDetail {
@@ -121,4 +124,56 @@ export interface user {
 	accessToken: string;
 	photoURL: string;
 	uid: string;
+}
+
+export interface providers {
+	provider_name: string;
+	logo_path: string;
+}
+
+export interface navText{
+	name: string;
+	link: string;
+}
+export interface lenNavBar{
+	links:navText[];
+	login: string;
+	favorites:string;
+	placeholder:string;
+	myFavorites:string;
+	myInfomation:string;
+	logout:string;
+}
+
+export interface aside{
+	genresMovies: string;
+	genresTvs: string;
+}
+
+export interface home{
+	popular: string;
+	top:string;
+	movies:string
+	tvPopular:string;
+}
+
+export interface details{
+	genres:string;
+	actors:string;
+	premiere:string;
+	overview:string;
+}
+
+export interface lenguages{
+navBar: lenNavBar | null;
+asideBar: aside | null;
+home:home | null;
+details:details | null
+suggestions:string | null ;
+favorites:string | null;
+}
+export interface leguagesSlice{
+	items: lenguages ;
+	loading:boolean;
+	error: Error | null;
 }

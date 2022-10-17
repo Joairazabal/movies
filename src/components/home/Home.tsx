@@ -1,5 +1,5 @@
-import {useEffect, useState} from "react";
-import {useLocation, Location, useParams, useSearchParams} from 'react-router-dom'
+import {useEffect, useState, useTransition} from "react";
+import {useLocation, Location} from 'react-router-dom'
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {populartyMovies, setLoadingHome} from "../../redux/slices/get.slice";
 import {movies, moviesState, resultTop, seriesPopular} from "../../redux/types";
@@ -11,9 +11,7 @@ import {searchMovies} from "../../redux/slices/searchMovies.slice";
 import ContainerMovies from "../search/ContainerMovies";
 import NavBar from "../navbar/NavBar";
 import Loading from "../loading/Loading";
-import {filterMovies} from "../../redux/slices/allMovies.slice";
-import FilterMovies from "./FilterMovies";
-import {filterTvSeries} from "../../redux/slices/allSeries.slice";
+import {useTranslation} from "react-i18next";
 
 
 export function Home() {
@@ -21,7 +19,7 @@ export function Home() {
     const params: Location = useLocation();
     let query = params.search.substring(8).toString();
     let filtro = params.search.substring(7)
-
+    const {t} = useTranslation();
 
     const movies: moviesState["items"] = useAppSelector(state => state.movies.items);
     const top: resultTop['results'] = useAppSelector(state => state.topMovies.items.results);
@@ -29,6 +27,7 @@ export function Home() {
     const search: movies[] = useAppSelector(state => state.searchMovies.items);
     const loading = useAppSelector(state => state.movies.loading)
 
+    const xd = localStorage.getItem('lenguage')
 
     useEffect(() => {
         if (query.length > 3) {
@@ -50,7 +49,9 @@ export function Home() {
     if (loading) 
         return <Loading/>
 
-console.log(process.env.API_KEY_FB)
+
+    
+
 
     return (
         <section>
@@ -64,16 +65,30 @@ console.log(process.env.API_KEY_FB)
                     ) : (
                         <div className="flex flex-col items-center gap-4 sm:w-[70%] lg:w-[90%] ml-4 ">
                             <MovieCard movie={movies}
-                                title={'popular'}
-                                subtitle={'movies'}
-                                clase={'movie'}/>
+                                title={
+                                    t('home.popular')
+                                }
+                                subtitle={
+                                    t('home.movies')
+                                }
+                                clase={
+                                    t('movie')
+                                }/>
                             <MovieCard movie={top}
-                                title={'top 10'}
-                                subtitle={'movies'}
+                                title={
+                                    t('home.top')
+                                }
+                                subtitle={
+                                    t('navBar.movies')
+                                }
                                 clase={'movie'}/>
                             <MovieCard movie={seriesPopular}
-                                title={'tv popular'}
-                                subtitle={'series '}
+                                title={
+                                    t('home.tvPopular')
+                                }
+                                subtitle={
+                                    t('home.movies')
+                                }
                                 clase={'tv'}/>
                         </div>
 

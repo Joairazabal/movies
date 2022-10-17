@@ -29,18 +29,18 @@ export default function SideBar({clase} : Props) {
 
             {
             clase === 'all' ? <div className='gap-4'>
-                <li>
-                    <div className='mt-8 w-[90%] text-left'>
-                        <h1 className='font-Nunito text-secundary lg:text-2xl sm:text-sm md:text-xl'>Genres Movies</h1>
+                <li className='list-none'>
+                    <div className='mt-8 w-[90%] text-left '>
+                        <h1 className='font-Nunito text-secundary lg:text-2xl sm:text-sm md:text-xl '>Genres Movies</h1>
                         <ListGenres genres={
                                 genres.genresMovies
                             }
                             clase={'movie'}/>
                     </div>
                 </li>
-                <li>
+                <li className='list-none'>
                     <div className='mt-8 w-[80%] text-left'>
-                        <h1 className='font-Nunito text-secundary lg:text-2xl sm:text-sm md:text-xl'>Genres Tvs</h1>
+                        <h1 className='font-Nunito text-secundary lg:text-2xl sm:text-sm md:text-xl list-none'>Genres Tvs</h1>
                         <ListGenres genres={
                                 genres.genresTv
                             }

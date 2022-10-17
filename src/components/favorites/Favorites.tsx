@@ -4,17 +4,18 @@ import {
     getDoc,
     doc,
     setDoc,
-    updateDoc
 } from 'firebase/firestore'
 import firebaseApp from '../../fireBase'
-import {movies, topMovies, user} from '../../redux/types'
+import { topMovies, user} from '../../redux/types'
 import Card from '../../components/movie.card/Card'
 import Navbar from '../../components/navbar/NavBar'
 import Loading from '../loading/Loading'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import useLenguages from '../../hooks/useLenguages'
 
 
 export default function Favorites() {
-
+    const dispatch= useAppDispatch()
     const firestore = getFirestore(firebaseApp);
 
     async function searchFavorites(idFav : string) {
@@ -42,9 +43,11 @@ export default function Favorites() {
         
     })
 
+    const allText= useLenguages()
+
+
     useEffect(() => {
         async function fetchFavs(usuario : string) {
-            console.log(usuario)
             const favorites = await searchFavorites(usuario)
             const favoritesParse = JSON.stringify(favorites)
             localStorage.setItem('favorites', favoritesParse)
@@ -57,15 +60,12 @@ export default function Favorites() {
 
     if (!favs.length) 
         return <Loading/>
-
-    
-
     return (
         <>
             <Navbar/>
             <div className='bg-primary-100 w-full flex justify-center h-screen'>
                 <div className='flex flex-col gap-12 mt-10  w-full'>
-                    <h1 className=' font-Nunito text-4xl text-secundary-50'>Favorites</h1>
+                    <h1 className=' font-Nunito text-4xl text-secundary-50'>{allText.leng.favorites}</h1>
                     <div className='container w-full bg-primary-100'>
                         {
                         favs ? favs.map((el

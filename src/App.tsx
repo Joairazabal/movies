@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react';
-import {Route, Routes, BrowserRouter} from 'react-router-dom';
+import React, {useState, useMemo} from 'react';
+import {Route, Routes} from 'react-router-dom';
 import DetailMovie from "./components/DetailMovie/DetailMovie";
 import {Home} from "./components/home/Home";
 import DetailTv from "./components/detailsTv/DetailTv";
@@ -10,6 +10,7 @@ import firebaseApp from './fireBase';
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
 import UserContext from './context/userContext';
 import Favorites from './components/favorites/Favorites';
+import './i18next'
 
 const auth = getAuth(firebaseApp);
 
@@ -27,7 +28,7 @@ function App() {
             setGlobalUser(null)
         }
     })
-
+useMemo(() => globalUser, [globalUser])
     return (
         <UserContext.Provider value={globalUser}>
             <Routes>

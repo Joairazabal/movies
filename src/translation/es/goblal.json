@@ -1,0 +1,32 @@
+{
+	"navBar": {
+		"home": "Inicio",
+		"movies": "Peliculas",
+		"login": "Iniciar Sesion",
+		"favorites": "Favoritos",
+		"placeholder": "Buscar...",
+		"myFavorites": "Mis favoritos",
+		"myInfomation": " Mi informacion",
+		"logout": "Cerrar sesion",
+		"new": "Eres nuevo?",
+		"signUp": "Registrate"
+	},
+	"asideBar": {
+		"genresMovies": "Genéros de peliculas",
+		"genresTvs": "Genéros de series"
+	},
+	"home": {
+		"popular": "Peliculas",
+		"top": "Las 10 mejores ",
+		"movies": "Populares",
+		"tvPopular": "Series"
+	},
+	"details": {
+		"genres": "Genéros",
+		"actor": "Actores",
+		"premiere": "Estreno",
+		"overview": "Resumen"
+	},
+	"suggestions": "Sugerencias",
+	"favorites": "Favoritos"
+}

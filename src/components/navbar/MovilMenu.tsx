@@ -1,9 +1,12 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
+import useLenguages from '../../hooks/useLenguages'
 import useUser from '../../hooks/useUser'
-import {user} from '../../redux/types'
+import {navText, user} from '../../redux/types'
 import Login from '../login/Login'
 import Logout from '../login/Logout'
+import {useTranslation} from 'react-i18next'
+import ButtonLenguage from './ButtonLenguage'
 
 export default function MovilMenu() {
     const [close, setClose] = useState(false)
@@ -18,24 +21,11 @@ export default function MovilMenu() {
     }
 
     const user: user | null = useUser();
+    const allText = useLenguages();
 
-    const links = [
-        {
-            name: 'Home',
-            link: '/'
-        }, {
-            name: 'Favorites',
-            link: '/favorites'
-        }, {
-            name: 'Movies',
-            link: '/movies'
-        }, {
-            name: 'Series',
-            link: '/series'
-        },
-    ]
+    const {t} = useTranslation();
 
-
+    console.log(t)
     return (
         <div className=' inline-block sm:block lg:hidden z-30'>
             <div className="w-11 h-11 mr-3 relative cursor-pointer flex lg:hidden sm:block sm:mt-[-6px] z-20"
@@ -74,29 +64,36 @@ export default function MovilMenu() {
                 }
 
                     <ul className='flex flex-col ml-5 text-2xl font-PT gap-4 items-start  '>
-                        {
-                        links ?. map((el, index) => {
-                            return (
-                                <li key={index}>
-                                    <Link to={
-                                        el.link
-                                    }>
-                                        <a className='active:text-secundary-50'>
-                                            {
-                                            el.name
-                                        }</a>
-                                    </Link>
-                                </li>
-                            )
-                        })
-                    }
+                        <li>
+                            <Link to={'/'}>
+                                {
+                                t('navBar.home')
+                            } </Link>
+                        </li>
+                        <li>
+                            <Link to={'/movies'}>
+                                {
+                                t('navBar.movies')
+                            } </Link>
+                        </li>
+                        <li>
+                            <Link to={'/series'}>Series</Link>
+                        </li>
                         {
                         user ? <Logout/>: <Link to={'/login'}>
-                            <span className='text-xl text-secundary'>Are you new?<strong className='text-2xl text-secundary-50'>
-                                    Sign up</strong>
+                            <span className='text-xl text-secundary'>
+                                {
+                                t('navBar.new')
+                            }
+                                <strong className='text-2xl text-secundary-50 ml-2'>
+                                    {
+                                    t('navBar.signUp')
+                                }</strong>
                             </span>
                         </Link>
-                    } </ul>
+                    }
+                        <ButtonLenguage/>
+                    </ul>
                 </div>
             </div>
 
