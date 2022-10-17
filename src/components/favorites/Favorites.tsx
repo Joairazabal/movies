@@ -1,21 +1,16 @@
 import React, {useEffect, useState} from 'react'
-import {
-    getFirestore,
-    getDoc,
-    doc,
-    setDoc,
-} from 'firebase/firestore'
+import {getFirestore, getDoc, doc, setDoc} from 'firebase/firestore'
 import firebaseApp from '../../fireBase'
-import { topMovies, user} from '../../redux/types'
+import {topMovies, user} from '../../redux/types'
 import Card from '../../components/movie.card/Card'
 import Navbar from '../../components/navbar/NavBar'
 import Loading from '../loading/Loading'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import useLenguages from '../../hooks/useLenguages'
+import {useAppDispatch} from '../../hooks/redux'
+import {useTranslation} from 'react-i18next'
 
 
 export default function Favorites() {
-    const dispatch= useAppDispatch()
+    const dispatch = useAppDispatch()
     const firestore = getFirestore(firebaseApp);
 
     async function searchFavorites(idFav : string) {
@@ -33,6 +28,8 @@ export default function Favorites() {
 
     const [favs, setFavs] = useState([])
 
+    const {t} = useTranslation();
+
     const [user, setUser] = useState(() => {
         const user = localStorage.getItem('user')
         if (user) {
@@ -40,11 +37,10 @@ export default function Favorites() {
             return userParse.email
         } else 
             return ''
+
         
+
     })
-
-    const allText= useLenguages()
-
 
     useEffect(() => {
         async function fetchFavs(usuario : string) {
@@ -55,18 +51,24 @@ export default function Favorites() {
         }
         fetchFavs(user)
 
-    }, [user])
+    }, [user, favs])
 
 
-    if (!favs.length) 
+    if (!favs.length) {
         return <Loading/>
+    }
+
+
     return (
         <>
             <Navbar/>
-            <div className='bg-primary-100 w-full flex justify-center h-screen'>
-                <div className='flex flex-col gap-12 mt-10  w-full'>
-                    <h1 className=' font-Nunito text-4xl text-secundary-50'>{allText.leng.favorites}</h1>
-                    <div className='container w-full bg-primary-100'>
+            <div className='bg-primary-100 w-full flex justify-center  h-screen '>
+                <div className='flex flex-col w-[80%] pt-10 bg-primary-100'>
+                    <h1 className=' font-Nunito text-4xl text-secundary-50 mb-6 ml-4'>
+                        {
+                        t('favorites')
+                    }</h1>
+                    <div className='container  bg-primary-100'>
                         {
                         favs ? favs.map((el
                         : topMovies, index
