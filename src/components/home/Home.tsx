@@ -3,7 +3,7 @@ import {useLocation, Location} from 'react-router-dom'
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {populartyMovies, setLoadingHome} from "../../redux/slices/get.slice";
 import {movies, moviesState, resultTop, seriesPopular} from "../../redux/types";
-import MovieCard from "../movie.card/MovieCard";
+import MovieCard from "../card/MovieCard";
 import SideBar from "../sideBar/SideBar";
 import {topMovies} from "../../redux/slices/topMovies.slice";
 import {getEstrenos} from "../../redux/slices/estrenos.slice";

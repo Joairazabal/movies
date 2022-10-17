@@ -1,9 +1,7 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
-import useLenguages from '../../hooks/useLenguages'
 import useUser from '../../hooks/useUser'
-import {navText, user} from '../../redux/types'
-import Login from '../login/Login'
+import {user} from '../../redux/types'
 import Logout from '../login/Logout'
 import {useTranslation} from 'react-i18next'
 import ButtonLenguage from './ButtonLenguage'
@@ -21,11 +19,10 @@ export default function MovilMenu() {
     }
 
     const user: user | null = useUser();
-    const allText = useLenguages();
+
 
     const {t} = useTranslation();
 
-    console.log(t)
     return (
         <div className=' inline-block sm:block lg:hidden z-30'>
             <div className="w-11 h-11 mr-3 relative cursor-pointer flex lg:hidden sm:block sm:mt-[-6px] z-20"

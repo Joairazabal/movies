@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {getFirestore, getDoc, doc, setDoc} from 'firebase/firestore'
 import firebaseApp from '../../fireBase'
 import {topMovies, user} from '../../redux/types'
-import Card from '../../components/movie.card/Card'
+import Card from '../card/Card'
 import Navbar from '../../components/navbar/NavBar'
 import Loading from '../loading/Loading'
 import {useAppDispatch} from '../../hooks/redux'
@@ -38,7 +38,9 @@ export default function Favorites() {
         } else 
             return ''
 
+
         
+
 
     })
 

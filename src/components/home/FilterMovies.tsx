@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {movies, seriesPopular} from '../../redux/types'
 import InfinitiScroll from 'react-infinite-scroll-component'
 import Loading from '../loading/Loading'
-import Card from '../movie.card/Card'
+import Card from '../card/Card'
 
 
 interface Props {
