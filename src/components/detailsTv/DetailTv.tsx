@@ -19,16 +19,18 @@ export default function DetailTv() {
     let params = useParams();
     let id = params.id;
     const {t}= useTranslation();
+    let lenguage = localStorage.getItem('lenguage')
+
 
     useEffect(() => {
         dispatch(setClearTv())
         dispatch(setClearState())
-        dispatch(getTrailerTv(id));
-        dispatch(getDetailTv(id));
+        dispatch(getTrailerTv(id,lenguage));
+        dispatch(getDetailTv(id,lenguage));
         dispatch(getProvider(id, 'tv'))
         dispatch(getActorsTv(id))
         setLoading(false)
-    }, [dispatch, params]);
+    }, [dispatch, params,lenguage]);
 
     if (! detailsTv.backdrop_path) 
         return <Loading/>

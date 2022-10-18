@@ -27,7 +27,7 @@ export default function Favorites() {
     }
 
     const [favs, setFavs] = useState([])
-
+    const language= localStorage.getItem('lng')
     const {t} = useTranslation();
 
     const [user, setUser] = useState(() => {
@@ -37,11 +37,6 @@ export default function Favorites() {
             return userParse.email
         } else 
             return ''
-
-
-        
-
-
     })
 
     useEffect(() => {
@@ -53,7 +48,7 @@ export default function Favorites() {
         }
         fetchFavs(user)
 
-    }, [user, favs])
+    }, [user, favs, language])
 
 
     if (!favs.length) {

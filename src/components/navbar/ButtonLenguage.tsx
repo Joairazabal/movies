@@ -12,9 +12,11 @@ export default function ButtonLenguage() {
         if (leng === 'en') {
             i18n.changeLanguage('es');
             localStorage.setItem("lng", 'es');
+            window.location.reload()
         } else {
             i18n.changeLanguage('en');
             localStorage.setItem("lng", 'en');
+            window.location.reload()
         }
     };
 

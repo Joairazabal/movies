@@ -12,7 +12,7 @@ import ContainerMovies from '../search/ContainerMovies'
 import {useTranslation} from 'react-i18next'
 import {BiLeftArrow} from 'react-icons/bi'
 import {BiRightArrow} from 'react-icons/bi'
-import Paginated from '../../paginated/Paginated'
+import Paginated from '../paginated/Paginated'
 
 
 export default function Movies() {
@@ -20,7 +20,7 @@ export default function Movies() {
     const params = useLocation();
     const {t} = useTranslation();
 
-
+    let language = localStorage.getItem('lng')
     const totalMovies = useAppSelector(state => state.allMovies.items);
     const movies = useAppSelector(state => state.searchMovies.items)
 
@@ -35,17 +35,17 @@ export default function Movies() {
 
     useEffect(() => {
         if (query.length > 3) {
-            dispatch(searchMovies(query))
+            dispatch(searchMovies(query,language))
         } else if (genre !== 'all' && genre) {
             let parseParams = parseInt(pages ? pages : '1', 10)
             setTimeout(() => {
                 setLoading(false)
             }, 1000)
-            dispatch(filterMovies(genre, parseParams))
+            dispatch(filterMovies(genre, parseParams, language))
         } else 
             dispatch(setClearSearch())
-         dispatch(allMovies(page))
-    }, [genre, page, query, params.search])
+         dispatch(allMovies(page, language))
+    }, [genre, page, query, params.search, language])
 
 
     if (! totalMovies.length && ! movies.length) 
@@ -104,7 +104,7 @@ export default function Movies() {
                                 <><ContainerMovies movie={totalMovies}
                                         classe={'movie'}/><Paginated clase='movie'
                                         genre={genre}
-                                        set={setLoading}/></>
+                                        /></>
                             )
                         } </div>
                     )

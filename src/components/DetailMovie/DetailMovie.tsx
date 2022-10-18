@@ -17,14 +17,16 @@ export default function DetailMovie() {
     let params = useParams();
     let id = params.id;
 
+    let lenguage = localStorage.getItem('lng')
+
     useEffect(() => {
         dispatch(setClear())
         dispatch(setClearState())
-        dispatch(getDetail(id));
-        dispatch(getTrailer(id));
+        dispatch(getDetail(id,lenguage));
+        dispatch(getTrailer(id,lenguage));
         dispatch(getActors(id));
         dispatch(getProviderMovie(id, 'movie'))
-    }, [dispatch, params]);
+    }, [dispatch, params, lenguage]);
 
     const details = useAppSelector(state => state.detail.items);
     const trailers = useAppSelector(state => state.trailer.items);
@@ -40,7 +42,7 @@ export default function DetailMovie() {
 
     const estreno = details.release_date ?. slice(0, 4)
 
-    const {t}= useTranslation();
+    const {t} = useTranslation();
 
     if (! details.backdrop_path) 
         return <Loading/>
@@ -95,7 +97,10 @@ export default function DetailMovie() {
                         }
                             - {estreno}</h3>
                         <li className="flex items-center gap-2">
-                            <strong className="font-PT lg:text-lg sm:text-xs text-secundary-50 ">{t('details.genres')}:</strong>
+                            <strong className="font-PT lg:text-lg sm:text-xs text-secundary-50 ">
+                                {
+                                t('details.genres')
+                            }:</strong>
                             {
                             details.genres ?. map(el => {
                                 return <h3 key={
@@ -110,7 +115,10 @@ export default function DetailMovie() {
                             })
                         } </li>
                         <div className="flex items-start gap-2 lg:mb-14 ">
-                            <strong className="font-PT lg:text-lg sm:text-xs text-secundary-50 ">{t('details.actors')}:
+                            <strong className="font-PT lg:text-lg sm:text-xs text-secundary-50 ">
+                                {
+                                t('details.actor')
+                            }:
                             </strong>
                             <p className='text-secundary font-Nunito sm:text-xs lg:text-lg flex'>
                                 {
@@ -118,7 +126,10 @@ export default function DetailMovie() {
                             }</p>
                         </div>
                         <div className="flex lg:justify-start sm:flex sm:justify-end sm:pt-10 sm:flex-col sm:gap-4 md:mt-0 ">
-                            <h3 className="text-secundary-50 text-2xl font-Nunito sm:block lg:hidden">{t('details.overview')}</h3>
+                            <h3 className="text-secundary-50 text-2xl font-Nunito sm:block lg:hidden">
+                                {
+                                t('details.overview')
+                            }</h3>
                             <p className="break-words text-secundary font-Nunito lg:text-xl leading-[2rem] lg:w-[70%] sm:w-[85%] lg:tracking-wide sm:text-sm font-semibold ">
                                 {
                                 details.overview ? details.overview : (
@@ -132,7 +143,7 @@ export default function DetailMovie() {
                         {
                         details.providers ? <div className='flex flex-col gap-2'>
                             <div>
-                                <h3 className='text-secundary-50 text-2xl font-Nunito'>Providers</h3>
+                                <h3 className='text-secundary-50 text-2xl font-Nunito'>{t('details.providers')}</h3>
                             </div>
                             <div className='flex gap-4'>
                                 {

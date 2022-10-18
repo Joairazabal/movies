@@ -22,9 +22,12 @@ const MovieSearchSlice = createSlice({
 	},
 });
 
-export const searchMovies = (movie: string): AppThunk => {
+export const searchMovies = (
+	movie: string,
+	lenguage: string | null
+): AppThunk => {
 	return async (dispatch) => {
-		const response = await urlSearchMovies(movie);
+		const response = await urlSearchMovies(movie, lenguage);
 		try {
 			movie.length > 2
 				? dispatch(setSearch(response.data.results))

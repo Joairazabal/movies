@@ -28,10 +28,11 @@ const movieSlice = createSlice({
 	},
 });
 
-export const allMovies = (page: number): AppThunk => {
+export const allMovies = (page: number, lenguage: string | null): AppThunk => {
 	return async (dispatch) => {
 		try {
-			const response = await urlAllMovies(page, null);
+			const response = await urlAllMovies(page, null, lenguage);
+			console.log(response.data.results)
 			dispatch(setAllMovies(response.data.results));
 		} catch (error) {
 			console.error(error);
@@ -39,11 +40,15 @@ export const allMovies = (page: number): AppThunk => {
 	};
 };
 
-export const filterMovies = (genreId: string, page: number): AppThunk => {
+export const filterMovies = (
+	genreId: string,
+	page: number,
+	lenguage: string | null
+): AppThunk => {
 	return async (dispatch) => {
 		try {
 			dispatch(setClear());
-			const response = await urlAllMovies(page, genreId);
+			const response = await urlAllMovies(page, genreId, lenguage);
 			const filters: movies[] = response.data.results;
 			dispatch(setFilterMovies(filters));
 		} catch (error) {
@@ -52,10 +57,13 @@ export const filterMovies = (genreId: string, page: number): AppThunk => {
 	};
 };
 
-export const suggestionsMovies = (page: number): AppThunk => {
+export const suggestionsMovies = (
+	page: number,
+	lenguage: string | null
+): AppThunk => {
 	return async (dispatch) => {
 		const pageRandom = Math.floor(Math.random() * page);
-		const response = await urlAllMovies(pageRandom, null);
+		const response = await urlAllMovies(pageRandom, null, lenguage);
 		const suggestions: movies[] = response.data.results;
 		dispatch(suggestionsMovie(suggestions));
 	};

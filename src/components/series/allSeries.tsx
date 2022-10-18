@@ -10,7 +10,7 @@ import Loading from '../loading/Loading'
 import {searchMovies} from '../../redux/slices/searchMovies.slice'
 import ContainerMovies from '../search/ContainerMovies'
 import {setClearSearch} from '../../redux/slices/searchMovies.slice'
-import Paginated from '../../paginated/Paginated'
+import Paginated from '../paginated/Paginated'
 import {useSearchParams} from 'react-router-dom'
 
 
@@ -28,21 +28,22 @@ export default function Series() {
     let pages = parametros.get('page')
     const [page, setPage] = useState(1)
 
+    let language = localStorage.getItem('lng')
 
     useEffect(() => {
         if (filtro.length > 3) {
-            dispatch(searchMovies(filtro))
+            dispatch(searchMovies(filtro,language))
         } else if (genre !== 'all' && genre) {
             let parseParams = parseInt(pages ? pages : '1', 10)
             setTimeout(() => {
                 setLoading(false)
             }, 1000)
-            dispatch(filterTvSeries(genre, parseParams))
+            dispatch(filterTvSeries(genre, parseParams, language))
         } else {
             dispatch(setClearSearch())
-            dispatch(getAllSeries(page))
+            dispatch(getAllSeries(page, language))
         }
-    }, [page, filtro, genre, params.search])
+    }, [ language,page,genre, filtro,params.search])
 
 
     return (
@@ -92,7 +93,7 @@ export default function Series() {
                                     classe={'tv'}/>
                                 <Paginated clase='tv'
                                     genre={genre}
-                                    set={setLoading}/>
+                                />
                             </>
                         } </section>
                     )

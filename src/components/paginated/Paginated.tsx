@@ -3,20 +3,22 @@ import React from 'react'
 import {BiLeftArrow} from 'react-icons/bi'
 import {BiRightArrow} from 'react-icons/bi'
 import {useSearchParams} from 'react-router-dom'
-import {useAppDispatch} from '../hooks/redux';
-import {filterMovies} from '../redux/slices/allMovies.slice'
-import {filterTvSeries} from '../redux/slices/allSeries.slice'
+import {useAppDispatch} from '../../hooks/redux';
+import {filterMovies} from '../../redux/slices/allMovies.slice'
+import {filterTvSeries} from '../../redux/slices/allSeries.slice'
 
 interface Props {
     clase: string;
     genre: string;
-    set: React.Dispatch < React.SetStateAction < boolean >>
+   
 }
 
-export default function Paginated({clase, genre, set} : Props): any {
+export default function Paginated({clase, genre} : Props): any {
 
     const dispatch = useAppDispatch();
     let [parametros, setSearchParams] = useSearchParams();
+    let lenguage = localStorage.getItem('lenguage')
+
 
     const handleSetPageIncrement = (e : React.MouseEvent < HTMLButtonElement >, parametros : URLSearchParams) => {
         e.preventDefault();
@@ -26,9 +28,9 @@ export default function Paginated({clase, genre, set} : Props): any {
             parametros.set('page', paramsIncremented.toString())
             setSearchParams(parametros)
             if (clase === 'movie') {
-                dispatch(filterMovies(genre, paramsIncremented))
+                dispatch(filterMovies(genre, paramsIncremented,lenguage))
             } else {
-                dispatch(filterTvSeries(genre, paramsIncremented))
+                dispatch(filterTvSeries(genre, paramsIncremented, lenguage))
             }
         } else {
             setSearchParams({page: '2'})
@@ -44,15 +46,9 @@ export default function Paginated({clase, genre, set} : Props): any {
             parametros.set('page', paramsIncremented.toString())
             setSearchParams(parametros)
             if (clase === 'movie') {
-                setTimeout(() => {
-                    set(false)
-                }, 1000)
-                dispatch(filterMovies(genre, paramsIncremented))
+                dispatch(filterMovies(genre, paramsIncremented, lenguage))
             } else {
-                setTimeout(() => {
-                    set(false)
-                }, 500)
-                dispatch(filterTvSeries(genre, paramsIncremented))
+                dispatch(filterTvSeries(genre, paramsIncremented, lenguage))
             }
         } else {
             return

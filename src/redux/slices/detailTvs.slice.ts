@@ -45,10 +45,13 @@ const detailTv = createSlice({
 	},
 });
 
-export const getDetailTv = (numero: string | undefined): AppThunk => {
+export const getDetailTv = (
+	numero: string | undefined,
+	lenguage: string | null
+): AppThunk => {
 	return async (dispatch) => {
 		try {
-			const response = await urlDetailTvs(numero);
+			const response = await urlDetailTvs(numero, lenguage);
 			dispatch(detailTv.actions.setDetailTv(response.data));
 		} catch (error) {
 			console.log(error);

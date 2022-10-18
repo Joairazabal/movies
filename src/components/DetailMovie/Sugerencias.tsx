@@ -7,9 +7,11 @@ import {useTranslation} from 'react-i18next';
 export default function Sugerencias() {
     const dispatch = useAppDispatch()
 
+    let language = localStorage.getItem('lng')
+
     useEffect(() => {
-        dispatch(suggestionsMovies(100))
-    }, [])
+        dispatch(suggestionsMovies(100, language))
+    }, [language])
 
     const movies = useAppSelector(state => state.allMovies.items)
     const shortMovies = movies.slice(1, 11)
@@ -19,7 +21,7 @@ export default function Sugerencias() {
 
             <h1 className=' font-PT text-4xl text-secundary-50'>
                 {
-                t('Suggestions')
+                t('suggestions')
             }</h1>
             <div className='lg:grid lg:grid-cols-5 lg:gap-8 md:grid md:grid-cols-4 md:gap-8 lg:w-[70%] sm:grid-cols-1 sm:gap-4 sm:w-[85%]  '>
                 {

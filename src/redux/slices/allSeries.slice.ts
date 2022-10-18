@@ -25,10 +25,13 @@ const serieSlice = createSlice({
 	},
 });
 
-export const getAllSeries = (page: number): AppThunk => {
+export const getAllSeries = (
+	page: number,
+	lenguage: string | null
+): AppThunk => {
 	return async (dispatch) => {
 		try {
-			const response = await urlAllSeries(page, null);
+			const response = await urlAllSeries(page, null, lenguage);
 			dispatch(setAllSeries(response.data.results));
 		} catch (error) {
 			console.error(error);
@@ -36,10 +39,14 @@ export const getAllSeries = (page: number): AppThunk => {
 	};
 };
 
-export const filterTvSeries = (genreId: string, page: number): AppThunk => {
+export const filterTvSeries = (
+	genreId: string,
+	page: number,
+	lenguage: string | null
+): AppThunk => {
 	return async (dispatch) => {
 		dispatch(setClear());
-		const response = await urlAllSeries(page, genreId);
+		const response = await urlAllSeries(page, genreId, lenguage);
 		const filters = response.data.results;
 		dispatch(setFilterSeries(filters));
 	};

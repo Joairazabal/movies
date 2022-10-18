@@ -42,10 +42,14 @@ const detail = createSlice({
 	},
 });
 
-export const getDetail = (numero: string | undefined): AppThunk => {
+export const getDetail = (
+	numero: string | undefined,
+	language: string | null
+): AppThunk => {
 	return async (dispatch) => {
 		try {
-			const response = await urlDetail(numero);
+			const response = await urlDetail(numero, language);
+			console.log(response.data)
 			dispatch(detail.actions.setDetail(response.data));
 		} catch (error) {
 			console.log(error);

@@ -2,6 +2,7 @@ import React from 'react'
 import {genre} from '../../redux/types'
 import {Link, useLocation} from 'react-router-dom'
 import {MdLabelOutline} from 'react-icons/md'
+import {useTranslation} from 'react-i18next'
 
 interface Props {
     genres: Array < genre > | null,
@@ -10,7 +11,8 @@ interface Props {
 
 export default function ListGenres({genres, clase} : Props) {
 
-    const params = useLocation()
+    const params = useLocation();
+    const {t}= useTranslation();
 
     return (
         <>
@@ -25,7 +27,7 @@ export default function ListGenres({genres, clase} : Props) {
                     }`
                 }>
                     <button>
-                        All</button>
+                       {t('asideBar.all')}</button>
                 </Link>
             </div>
 

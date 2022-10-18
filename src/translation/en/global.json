@@ -13,7 +13,8 @@
 	},
 	"asideBar": {
 		"genresMovies": "Genres Movies",
-		"genresTvs": "Genres Tvs"
+		"genresTvs": "Genres Tvs",
+		"all": "All"
 	},
 	"home": {
 		"popular": "Popular",
@@ -25,7 +26,8 @@
 		"genres": "Genres",
 		"actors": "Actors",
 		"premiere": "Premiere",
-		"overview": "Overview"
+		"overview": "Overview",
+		"providers": "Providers"
 	},
 	"suggestions": "Suggestions",
 	"favorites": "Favorites"

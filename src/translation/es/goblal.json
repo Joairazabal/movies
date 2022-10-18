@@ -13,11 +13,12 @@
 	},
 	"asideBar": {
 		"genresMovies": "Genéros de peliculas",
-		"genresTvs": "Genéros de series"
+		"genresTvs": "Genéros de series",
+		"all":"Todas"
 	},
 	"home": {
 		"popular": "Peliculas",
-		"top": "Las 10 mejores ",
+		"top": "Top 10",
 		"movies": "Populares",
 		"tvPopular": "Series"
 	},
@@ -25,7 +26,8 @@
 		"genres": "Genéros",
 		"actor": "Actores",
 		"premiere": "Estreno",
-		"overview": "Resumen"
+		"overview": "Resumen",
+		"providers": "Donde encontrarla"
 	},
 	"suggestions": "Sugerencias",
 	"favorites": "Favoritos"

@@ -27,16 +27,16 @@ export function Home() {
     const search: movies[] = useAppSelector(state => state.searchMovies.items);
     const loading = useAppSelector(state => state.movies.loading)
 
-    const xd = localStorage.getItem('lenguage')
+    const leng = localStorage.getItem('lng')
 
     useEffect(() => {
         if (query.length > 3) {
-            dispatch(searchMovies(query))
+            dispatch(searchMovies(query, leng))
         } else {
             if (params.pathname === '/' && params.search === '' || query === '') {
-                dispatch(populartyMovies());
-                dispatch(topMovies());
-                dispatch(getEstrenos());
+                dispatch(populartyMovies(leng));
+                dispatch(topMovies(leng));
+                dispatch(getEstrenos(leng));
                 setTimeout(() => {
                     dispatch(setLoadingHome())
 
@@ -44,7 +44,7 @@ export function Home() {
 
             }
         }
-    }, [params.search, filtro]);
+    }, [params.search, filtro, leng]);
 
     if (loading) 
         return <Loading/>
