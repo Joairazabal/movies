@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 @layer components {
-	.buttom{
-		@apply 
-		inline-block
+	.buttom {
+		@apply inline-block
 		relative
 		cursor-pointer
 		transition-all
@@ -25,7 +24,7 @@
 		before:via-secundary-50
 		before:to-primary-400
 		hover:before:w-full
-		hover:before:opacity-100
+		hover:before:opacity-100;
 	}
 	.forNow {
 		background: rgb(8, 15, 40);
@@ -97,4 +96,8 @@
 }
 html {
 	scroll-behavior: smooth;
+}
+
+* :focus {
+	outline: none;
 }

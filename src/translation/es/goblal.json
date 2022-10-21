@@ -14,7 +14,7 @@
 	"asideBar": {
 		"genresMovies": "Genéros de peliculas",
 		"genresTvs": "Genéros de series",
-		"all":"Todas"
+		"all": "Todas"
 	},
 	"home": {
 		"popular": "Peliculas",
@@ -30,5 +30,18 @@
 		"providers": "Donde encontrarla"
 	},
 	"suggestions": "Sugerencias",
-	"favorites": "Favoritos"
+	"favorites": {
+		"title": "Favoritos",
+		"notFavorites": "No tienes favoritos",
+		"go": "Ir a inicio",
+		"required": "Tienes que"
+	},
+	"login": {
+		"email": "Correo electronico",
+		"password": "Contraseña",
+		"google": "Iniciar sesion con google",
+		"haveAccount": "ya tienes cuenta? iniciar sesion",
+		"haveNotAccount": "aun no tienes cuenta? registrate",
+		"register": "Registrate"
+	}
 }

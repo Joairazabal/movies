@@ -84,10 +84,10 @@ export function Home() {
                                 clase={'movie'}/>
                             <MovieCard movie={seriesPopular}
                                 title={
-                                    t('home.tvPopular')
+                                    t('home.popular')
                                 }
                                 subtitle={
-                                    t('home.movies')
+                                    t('home.tvPopular')
                                 }
                                 clase={'tv'}/>
                         </div>

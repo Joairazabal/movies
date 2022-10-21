@@ -2,7 +2,7 @@
 	"navBar": {
 		"home": "Home",
 		"movies": "Movies",
-		"login": "login",
+		"login": "Login",
 		"favorites": "favorites",
 		"placeholder": "Search movies...",
 		"myFavorites": "My favorites",
@@ -17,10 +17,10 @@
 		"all": "All"
 	},
 	"home": {
-		"popular": "Popular",
-		"top": "top 10",
+		"popular": "Populars",
+		"top": "Top 10",
 		"movies": "Movies",
-		"tvPopular": "Tv popular"
+		"tvPopular": "Series "
 	},
 	"details": {
 		"genres": "Genres",
@@ -30,5 +30,18 @@
 		"providers": "Providers"
 	},
 	"suggestions": "Suggestions",
-	"favorites": "Favorites"
+	"favorites": {
+		"title": "Favorites",
+		"notFavorites": "You have not favorites",
+		"go": "Go to home",
+		"required": "you have to"
+	},
+	"login": {
+		"email": "Email adress",
+		"password": "Password",
+		"google": "Login with google ",
+		"haveAccount": "you have an account? Login",
+		"haveNotAccount": "have not you an account? Sign Up",
+		"register": "Register"
+	}
 }

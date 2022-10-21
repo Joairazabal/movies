@@ -5,6 +5,7 @@ import firebaseApp from '../../fireBase'
 import {movies, topMovies} from '../../redux/types'
 import useUser from '../../hooks/useUser'
 import {Link} from 'react-router-dom'
+import {useTranslation} from 'react-i18next'
 
 interface Props {
     id: string | null | number;
@@ -20,6 +21,7 @@ export default function AddFavorites({id, movie} : Props) {
     // id dentro de el array de favorites y sino es asi que lo pushee
     const user = useUser();
     const idUser = user ?. email;
+    const {t} = useTranslation();
 
 
     async function addFavorites(idUser : string, id : string | number | null) { // referencia a los favoritos
@@ -45,9 +47,9 @@ export default function AddFavorites({id, movie} : Props) {
         }
     }
 
-    const [respuesta, setRespuesta] = useState<boolean>(false)
+    const [respuesta, setRespuesta] = useState < boolean > (false)
 
-    const [open, setOpen] = useState<boolean>(false);
+    const [open, setOpen] = useState < boolean > (false);
 
     const handleAddFav = (e : React.MouseEvent < HTMLButtonElement >) => {
         e.preventDefault();
@@ -74,14 +76,19 @@ export default function AddFavorites({id, movie} : Props) {
             const favs = localStorage.getItem('favorites');
             if (favs ?. length) {
                 const parseFavs = JSON.parse(favs ? favs : '')
-                const filterFavs: movies[] = parseFavs? parseFavs.filter((el : movies) => el.id === id):
-                console.log('bucle')
+                const filterFavs: movies[] = parseFavs ? parseFavs.filter((el
+                : movies) => el.id === id) : console.log('bucle')
                 if (filterFavs.length) {
                     setRespuesta(true)
                 } else {
                     setRespuesta(false)
                 }
-            }else return
+            } else 
+                return
+
+
+            
+
 
         }
 
@@ -94,11 +101,17 @@ export default function AddFavorites({id, movie} : Props) {
             idUser ? <div className='absolute top-8'>
                 <span></span>
             </div> : <div className={
-                open ? "visible bg-primary-400 absolute w-[12rem] -mt-7 -ml-8 rounded-lg   " : 'hidden '
+                open ? "visible bg-primary-400 absolute w-[15rem] -mt-7 -ml-8 rounded-lg   " : 'hidden '
             }>
-                <span className=' break-words '>You have to
+                <span className=' break-words pl-6 '>
+                    {
+                    t('favorites.required')
+                }
                     <Link to='/login'>
-                        <strong className=' text-secundary-50 pl-2'>log in</strong>
+                        <strong className=' text-secundary-50 pl-2'>
+                            {
+                            t('navBar.login')
+                        }</strong>
                     </Link>
                 </span>
                 <div className="absolute content-[''] left-[10%] -mt-4 translate-x-[-50%] h-5 w-5 bg-primary-400 rotate-[45deg]"></div>

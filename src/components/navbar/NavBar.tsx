@@ -44,7 +44,7 @@ export default function Navbar(): JSX.Element {
                                 userParse ?. email ? '/favorites' : '/login'
                             }>
                                 {
-                                userParse ?. email ? t('favorites') : t('navBar.login')
+                                t('favorites.title')
                             }</Link>
                         </li>
 
