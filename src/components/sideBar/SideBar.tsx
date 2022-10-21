@@ -21,8 +21,6 @@ export default function SideBar({clase} : Props) {
     let lenguage = localStorage.getItem('lng')
 
     useEffect(() => {
-        console.log(genres)
-
         if (clase === 'all') {
             dispatch(allGenres('all', lenguage))
         } else {

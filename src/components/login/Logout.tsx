@@ -14,6 +14,7 @@ export default function Logout() {
         signOut(auth);
         localStorage.clear()
         navigate('/')
+        window.location.reload()
     }
 
     return (
